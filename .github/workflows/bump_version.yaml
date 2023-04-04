@@ -59,7 +59,12 @@ jobs:
           yq -i '.packageVersion = "${{ github.event.inputs.version }}"' sdk-resources/v2-config.yaml
           yq -i '.packageVersion = "${{ github.event.inputs.version }}"' sdk-resources/beta-config.yaml
           yq -i '.packageVersion = "${{ github.event.inputs.version }}"' sdk-resources/v3-config.yaml
-
+          
+      - name: Run Prescript
+        id: prescript
+        run: |
+          node sdk-resources/prescript.js api-specs/
+          
       - name: Build V3 SDK
         id: buildV3
         if: steps.updateVersion.outcome == 'success'
