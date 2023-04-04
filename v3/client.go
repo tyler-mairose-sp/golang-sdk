@@ -74,6 +74,8 @@ type APIClient struct {
 
 	OAuthClientsApi *OAuthClientsApiService
 
+	PasswordDictionaryApi *PasswordDictionaryApiService
+
 	PasswordManagementApi *PasswordManagementApiService
 
 	PersonalAccessTokensApi *PersonalAccessTokensApiService
@@ -128,6 +130,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LifecycleStatesApi = (*LifecycleStatesApiService)(&c.common)
 	c.NonEmployeeLifecycleManagementApi = (*NonEmployeeLifecycleManagementApiService)(&c.common)
 	c.OAuthClientsApi = (*OAuthClientsApiService)(&c.common)
+	c.PasswordDictionaryApi = (*PasswordDictionaryApiService)(&c.common)
 	c.PasswordManagementApi = (*PasswordManagementApiService)(&c.common)
 	c.PersonalAccessTokensApi = (*PersonalAccessTokensApiService)(&c.common)
 	c.PublicIdentitiesApi = (*PublicIdentitiesApiService)(&c.common)
@@ -482,7 +485,7 @@ func (c *APIClient) prepareRequest(
 
 	// Add the user agent to the request.
 	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
-	localVarRequest.Header.Add("X-SailPoint-SDK", "1.0.0")
+	localVarRequest.Header.Add("X-SailPoint-SDK", "1.0.3")
 
 	if ctx != nil {
 		// add context to the request
