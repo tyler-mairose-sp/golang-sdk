@@ -42,6 +42,7 @@ jobs:
           function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
 
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          LATEST_TAG="${$LATEST_TAG:1}"
           echo $LATEST_TAG
           if [ $(ver $LATEST_TAG) -lt $(ver ${{ github.event.inputs.version}}) ]
           then
@@ -109,4 +110,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Bump version to ${{ github.event.inputs.version }}
-          tagging_message: ${{ github.event.inputs.version }}
+          tagging_message: v${{ github.event.inputs.version }}
