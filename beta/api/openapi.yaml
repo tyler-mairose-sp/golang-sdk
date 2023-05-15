@@ -185,7 +185,80 @@ tags:
     \ last time the account's password was changed.\n\nRefer to [Managing User Accounts](https://documentation.sailpoint.com/saas/help/common/users/user_access.html#managing-user-accounts)\
     \ for more information about accounts.\n"
   name: Accounts
-- name: Certification Campaigns
+- description: "Use this API to implement certification campaign functionality.\n\
+    With this functionality in place, administrators can create, customize, and manage\
+    \ certification campaigns for their organizations' use. \nCertification campaigns\
+    \ provide IdentityNow (IDN) users with an interactive review process they can\
+    \ use to identify and verify access to systems. \nCampaigns help organizations\
+    \ reduce risk of inappropriate access and satisfy audit requirements. \n\nA certification\
+    \ refers to IDN's mechanism for reviewing a user's access to entitlements (sets\
+    \ of permissions) and approving or removing that access. \nThese certifications\
+    \ serve as a way of showing that a user's access has been reviewed and approved.\
+    \ \nMultiple certifications by different reviewers are often required to approve\
+    \ a user's access. \nA set of multiple certifications is called a certification\
+    \ campaign. \n\nFor example, an organization may use a Manager Certification campaign\
+    \ as a way of showing that a user's access has been reviewed and approved by multiple\
+    \ managers. \nOnce this campaign has been completed, IDN would provision all the\
+    \ access the user needs, nothing more. \n\nIDN provides two simple campaign types\
+    \ users can create without using search queries, Manager and Source Owner campaigns:\n\
+    \nYou can create these types of campaigns without using any search queries in\
+    \ IDN: \n\n- ManagerCampaign: IDN provides this campaign type as a way to ensure\
+    \ that an identity's access is certified by their managers. \nYou only need to\
+    \ provide a name and description to create one. \n\n- Source Owner Campaign: IDN\
+    \ provides this campaign type as a way to ensure that an identity's access to\
+    \ a source is certified by its source owners. \nYou only need to provide a name\
+    \ and description to create one. \nYou can specify the sources whose owners you\
+    \ want involved or just run it across all sources. \n\nFor more information about\
+    \ these campaign types, refer to [Starting a Manager or Source Owner Campaign](https://documentation.sailpoint.com/saas/help/certs/starting_campaign.html).\n\
+    \nOne useful way to create certification campaigns in IDN is to use a specific\
+    \ search and then run a campaign on the results returned by that search. \nThis\
+    \ allows you to be much more specific about whom you are certifying in your campaigns\
+    \ and what access you are certifying in your campaigns. \nFor example, you can\
+    \ search for all identities who are managed by \"Amanda.Ross\" and also have the\
+    \ access to the \"Accounting\" role and then run a certification campaign based\
+    \ on that search to ensure that the returned identities are appropriately certified.\
+    \ \n\nYou can use IDN search queries to create these types of campaigns: \n\n\
+    - Identities: Use this campaign type to review and revoke access items for specific\
+    \ identities. \nYou can either build a search query and create a campaign certifying\
+    \ all identities returned by that query, or you can search for individual identities\
+    \ and add those identities to the certification campaign. \n\n- Access Items:\
+    \ Use this campaign type to review and revoke a set of roles, access profiles,\
+    \ or entitlements from the identities that have them. \nYou can either build a\
+    \ search query and create a campaign certifying all access items returned by that\
+    \ query, or you can search for individual access items and add those items to\
+    \ the certification campaign. \n\n- Role Composition: Use this campaign type to\
+    \ review a role's composition, including its title, description, and membership\
+    \ criteria. \nYou can either build a search query and create a campaign certifying\
+    \ all roles returned by that query, or you can search for individual roles and\
+    \ add those roles to the certification campaign. \n\n- Uncorrelated Accounts:\
+    \ Use this campaign type to certify source accounts that aren't linked to an authoritative\
+    \ identity in IDN. \nYou can use this campaign type to view all the uncorrelated\
+    \ accounts for a source and certify them. \n\nFor more information about search-based\
+    \ campaigns, refer to [Starting a Campaign from Search](https://documentation.sailpoint.com/saas/help/certs/starting_search_campaign.html).\n\
+    \nOnce you have generated your campaign, it becomes available for preview. \n\
+    An administrator can review the campaign and make changes, or if it's ready and\
+    \ accurate, activate it. \n\nOnce the campaign is active, organization administrators\
+    \ or certification administrators can designate other IDN users as certification\
+    \ reviewers. \nThose reviewers can view any of the certifications they either\
+    \ need to review (active) or have already reviewed (completed).\n\nWhen a certification\
+    \ campaign is in progress, certification reviewers see the listed active certifications\
+    \ whose involved identities they can review. \nReviewers can then make decisions\
+    \ to grant or revoke access, as well as reassign the ceritifcation to another\
+    \ reviewer. If the reviewer chooses this option, they must provide a reason for\
+    \ reassignment in the form of a comment.\n\nOnce a reviewer has made decisions\
+    \ on all the certification's involved access items, he or she must \"Sign Off\"\
+    \ to complete the review process.\nDoing so converts the certification into read-only\
+    \ status, preventing any further changes to the review decisions and deleting\
+    \ the work item (task) from the reviewer's list of work items. \n\nOnce all the\
+    \ reviewers have signed off, the certification campaign either completes or, if\
+    \ any reviewers decided to revoke access for any of the involved identities, it\
+    \ moves into a remediation phase. \nIn the remediation phase, identities' entitlements\
+    \ are altered to remove any entitlements marked for revocation.\nIn this situation,\
+    \ the certification campaign completes once all the remediation requests are completed.\
+    \ \n\nThe end of a certification campaign is determined by its deadline, its completion\
+    \ status, or by an administrator's decision. \n\nFor more information about certifications\
+    \ and certification campaigns, refer to [Certifications](https://documentation.sailpoint.com/saas/user-help/certifications.html).\n"
+  name: Certification Campaigns
 - description: "Use this API to implement certification functionality.\nThis API provides\
     \ specific functionality that improves an organization's ability to manage its\
     \ certification process. \n\nA certification refers to IdentityNow's mechanism\
@@ -625,7 +698,7 @@ tags:
     \ in IdentityNow.\n\nAdministrators can create various service desk integrations,\
     \ all with their own nuances. \nThe following service desk integrations are available:\
     \ \n\n- [Atlassian Cloud Jira Service Management](https://documentation.sailpoint.com/connectors/atlassian/jira_cloud/help/integrating_jira_cloud_sd/introduction.html)\n\
-    \n- [Atlassian Server Jira Service Management](https://documentation.sailpoint.com/connectors/atlassian/jira_server/help/integrating_jira_server_sd/introduction.htmll)\n\
+    \n- [Atlassian Server Jira Service Management](https://documentation.sailpoint.com/connectors/atlassian/jira_server/help/integrating_jira_server_sd/introduction.html)\n\
     \n- [BMC Helix ITSM Service Desk](https://documentation.sailpoint.com/connectors/bmc/helix_ITSM_sd/help/integrating_bmc_helix_itsm_sd/intro.html)\n\
     \n- [BMC Helix Remedyforce Service Desk](https://documentation.sailpoint.com/connectors/bmc/helix_remedyforce_sd/help/integrating_bmc_helix_remedyforce_sd/intro.html)\n\
     \n- [Generic Service Desk](https://documentation.sailpoint.com/connectors/generic_sd/help/integrating_generic_service_desk/intro.html)\n\
@@ -1046,6 +1119,7 @@ paths:
       security:
       - oauth2:
         - idn:access-profile:read
+        - idn:access-profile:manage
       summary: List Access Profiles
       tags:
       - Access Profiles
@@ -1306,6 +1380,7 @@ paths:
       security:
       - oauth2:
         - idn:access-profile:read
+        - idn:access-profile:manage
       summary: Get an Access Profile
       tags:
       - Access Profiles
@@ -1706,6 +1781,7 @@ paths:
       security:
       - oauth2:
         - idn:access-profile:read
+        - idn:access-profile:manage
       summary: List Access Profile's Entitlements
       tags:
       - Access Profiles
@@ -3948,7 +4024,7 @@ paths:
           content:
             application/json:
               examples:
-                Slim Accounts:
+                SlimAccounts:
                   description: List of slim accounts that would result with *detailLevel
                     = SLIM*
                   value:
@@ -3968,7 +4044,7 @@ paths:
                     nativeIdentity: "CN=Geovanni 0a7cad6df,OU=hpun,OU=org-data-service,DC=TestAutomationAD,DC=local"
                     sourceId: 2c91808b7c28b350017c2a2ec5790aa1
                     uuid: "{e4218fa4-da52-4bb0-aa41-d2dcc08a7ad8}"
-                Full Accounts:
+                FullAccounts:
                   description: List of slim accounts that would result with *detailLevel
                     = FULL*  or not specifying it
                   value:
@@ -3993,10 +4069,8 @@ paths:
                     uuid: "{e4218fa4-da52-4bb0-aa41-d2dcc08a7ad8}"
               schema:
                 items:
-                  oneOf:
-                  - $ref: ../schemas/SlimAccount.yaml
-                  - $ref: ../schemas/FullAccount.yaml
-                type: object
+                  $ref: '#/components/schemas/listAccounts_200_response_inner'
+                type: array
           description: List of account objects
         "400":
           content:
@@ -4057,6 +4131,7 @@ paths:
       security:
       - oauth2:
         - idn:accounts:read
+        - idn:accounts:manage
       summary: Accounts List
       tags:
       - Accounts
@@ -4335,6 +4410,7 @@ paths:
       security:
       - oauth2:
         - idn:accounts:read
+        - idn:accounts:manage
       summary: Account Details
       tags:
       - Accounts
@@ -9434,7 +9510,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:connector-rule:read
+        - idn:rule-management-connector:read
+        - idn:rule-management-connector:manage
       summary: List Connector Rules
       tags:
       - Connector Rule Management
@@ -9515,7 +9592,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:connector-rule:write
+        - idn:rule-management-connector:manage
       summary: Create Connector Rule
       tags:
       - Connector Rule Management
@@ -9527,6 +9604,7 @@ paths:
       operationId: deleteConnectorRule
       parameters:
       - description: ID of the connector rule to delete
+        example: 8c190e6787aa4ed9a90bd9d5344523fb
         explode: false
         in: path
         name: id
@@ -9538,6 +9616,19 @@ paths:
         "204":
           description: No content - indicates the request was successful but there
             is no content to be returned in the response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -9601,7 +9692,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:connector-rule:write
+        - idn:rule-management-connector:manage
       summary: Delete a Connector-Rule
       tags:
       - Connector Rule Management
@@ -9612,6 +9703,7 @@ paths:
       operationId: getConnectorRule
       parameters:
       - description: ID of the connector rule to retrieve
+        example: 8c190e6787aa4ed9a90bd9d5344523fb
         explode: false
         in: path
         name: id
@@ -9626,6 +9718,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorRuleResponse'
           description: Connector rule with the given ID
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -9662,9 +9767,35 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:connector-rule:read
+        - idn:rule-management-connector:read
+        - idn:rule-management-connector:manage
       summary: Connector-Rule by ID
       tags:
       - Connector Rule Management
@@ -9675,6 +9806,7 @@ paths:
       operationId: updateConnectorRule
       parameters:
       - description: ID of the connector rule to update
+        example: 8c190e6787aa4ed9a90bd9d5344523fb
         explode: false
         in: path
         name: id
@@ -9701,6 +9833,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -9764,7 +9903,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:connector-rule:write
+        - idn:rule-management-connector:manage
       summary: Update a Connector Rule
       tags:
       - Connector Rule Management
@@ -9788,6 +9927,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorRuleValidationResponse'
           description: The status of the code's eligibility as a connector rule
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -9840,7 +9985,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:connector-rule:read
+        - idn:rule-management-connector:read
+        - idn:rule-management-connector:manage
       summary: Validate Connector Rule
       tags:
       - Connector Rule Management
@@ -9935,7 +10081,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/V3ConnectorDto'
+                items:
+                  $ref: '#/components/schemas/V3ConnectorDto'
+                type: array
           description: A Connector Dto object
         "400":
           content:
@@ -10404,6 +10552,8 @@ paths:
           **source.id**: *eq, in*
 
           **requestable**: *eq*
+          **created**: *gt, lt, ge, le*
+          **modified**: *gt, lt, ge, le*
         example: attribute eq "memberOf"
         explode: true
         in: query
@@ -10480,15 +10630,16 @@ paths:
       security:
       - oauth2:
         - idn:entitlement:read
+        - idn:entitlement:manage
       summary: Gets a list of entitlements.
       tags:
       - Entitlements
   /entitlements/{id}:
     get:
-      description: This API returns an Entitlement by its ID.
+      description: This API returns an entitlement by its ID.
       operationId: getEntitlement
       parameters:
-      - description: Entitlement Id
+      - description: The entitlement ID
         example: 2c91808874ff91550175097daaec161c
         in: path
         name: id
@@ -10528,7 +10679,7 @@ paths:
                 modified: 2021-01-19T16:53:35.707Z
               schema:
                 $ref: '#/components/schemas/Entitlement'
-          description: An Entitlement
+          description: An entitlement
         "400":
           content:
             application/json:
@@ -10606,21 +10757,22 @@ paths:
       security:
       - oauth2:
         - idn:entitlement:read
-      summary: Get an Entitlement
+        - idn:entitlement:manage
+      summary: Get an entitlement
       tags:
       - Entitlements
     patch:
       description: |-
-        This API updates an existing Entitlement using [JSON Patch](https://tools.ietf.org/html/rfc6902) syntax.
+        This API updates an existing entitlement using [JSON Patch](https://tools.ietf.org/html/rfc6902) syntax.
 
         The following fields are patchable: **requestable**, **privileged**, **segments**, **owner**.
 
-        When patching owner, only owner type and owner id need to be provided. Owner name is optional and it won't be modified. If it is provided, it should correspond to the real name. The only owner type currently supported is IDENTITY.
+        When you're patching owner, only owner type and owner id must be provided. Owner name is optional, and it won't be modified. If the owner name is provided, it should correspond to the real name. The only owner type currently supported is IDENTITY.
 
         A token with ORG_ADMIN or SOURCE_ADMIN authority is required to call this API.
       operationId: patchEntitlement
       parameters:
-      - description: ID of the Entitlement to patch
+      - description: ID of the entitlement to patch
         in: path
         name: id
         required: true
@@ -10631,7 +10783,7 @@ paths:
         content:
           application/json-patch+json:
             examples:
-              Make an Entitlement Requestable and Privileged in One Call:
+              Make an entitlement requestable and privileged in one call:
                 description: This example shows how multiple fields may be updated
                   with a single patch call.
                 value:
@@ -10641,27 +10793,26 @@ paths:
                 - op: replace
                   path: /privileged
                   value: true
-              Assign an Entitlement to a Segment:
-                description: This example illustrates the use of patch to assign an
-                  Entitlement to a Segment by adding the Segment's ID to the Entitlement's
-                  segments array.
+              Assign an entitlement to a segment:
+                description: This example shows how to use patch to assign an entitlement
+                  to a segment by adding the segment's ID to the entitlement's segments
+                  array.
                 value:
                 - op: add
                   path: /segments/-
                   value: f7b1b8a3-5fed-4fd4-ad29-82014e137e19
-              Assign a owner to an entitlement:
-                description: This example illustrates the use of patch to assign a
-                  owner to an entitlement by adding the owner's info to the entitlement.
+              Assign an owner to an entitlement:
+                description: This example shows how to use patch to assign an owner
+                  to an entitlement by adding the owner's info to the entitlement.
                 value:
                 - op: add
                   path: /owner
                   value:
                     type: IDENTITY
                     id: 2c9180858315595501831958427e5424
-              Replace a owner for an entitlement:
-                description: This example illustrates the use of patch to replace
-                  a new owner to an entitlement by replacing the new owner's info
-                  to the entitlement.
+              Replace an owner for an entitlement:
+                description: This example shows how to use patch to replace an entitlement's
+                  owner by replacing the owner's info to the entitlement.
                 value:
                 - op: replace
                   path: /owner
@@ -10682,7 +10833,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entitlement'
-          description: Responds with the Entitlement as updated.
+          description: Responds with the entitlement as updated.
         "400":
           content:
             application/json:
@@ -10759,8 +10910,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:entitlement:update
-      summary: Patch a specified Entitlement
+        - idn:entitlement:manage
+      summary: Patch an entitlement
       tags:
       - Entitlements
   /entitlements/{id}/parents:
@@ -10926,6 +11077,7 @@ paths:
       security:
       - oauth2:
         - idn:entitlement:read
+        - idn:entitlement:manage
       summary: List of entitlements parents
       tags:
       - Entitlements
@@ -11284,6 +11436,7 @@ paths:
       security:
       - oauth2:
         - idn:entitlement:read
+        - idn:entitlement:manage
       summary: Get Entitlement Request Config
       tags:
       - Entitlements
@@ -11401,7 +11554,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:entitlement:update
+        - idn:entitlement:manage
       summary: Replace Entitlement Request Config
       tags:
       - Entitlements
@@ -11476,11 +11629,11 @@ paths:
       - Password Management
   /historical-identities:
     get:
-      description: 'This gets the list of identities for the customer. This list end
+      description: This gets the list of identities for the customer. This list end
         point does not support count=true request param. The total  count of identities
         would never be returned even if the count param is specified in the request
-        Requires authorization scope of ''idn:identity-history:read'' '
-      operationId: listIdentities
+        Requires authorization scope of 'idn:identity-history:read'
+      operationId: listHistoricalIdentities
       parameters:
       - description: "This param is used for starts-with search for first, last and\
           \ display name of the identity"
@@ -11536,6 +11689,12 @@ paths:
                   $ref: '#/components/schemas/IdentityListItem'
                 type: array
           description: List of identities for the customer.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -11561,6 +11720,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -11579,15 +11746,16 @@ paths:
           description: Internal Server Error - Returned if there is an unexpected
             error.
       security:
-      - bearerAuth: []
+      - oauth2:
+        - idn:identity-history:read
       summary: Lists all the identities
       tags:
       - Identity History
   /historical-identities/{id}:
     get:
-      description: 'This method retrieves a specified identity Requires authorization
-        scope of ''idn:identity-history:read'' '
-      operationId: getIdentity
+      description: This method retrieves a specified identity Requires authorization
+        scope of 'idn:identity-history:read'
+      operationId: getHistoricalIdentity
       parameters:
       - description: The identity id
         example: 8c190e6787aa4ed9a90bd9d5344523fb
@@ -11634,6 +11802,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -11651,7 +11827,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Gets the most recent snapshot of a specific identity
+      security:
+      - oauth2:
+        - idn:identity-history:read
+      summary: Get latest snapshot of identity
       tags:
       - Identity History
   /historical-identities/{id}/access-items:
@@ -13419,6 +13598,370 @@ paths:
       summary: Attribute synchronization for single identity.
       tags:
       - Identities
+  /identities:
+    get:
+      description: This API returns a list of identities.
+      operationId: listIdentities
+      parameters:
+      - description: |-
+          Filter results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters)
+
+          Filtering is supported for the following fields and operators:
+
+          **id**: *eq, in*
+
+          **name**: *eq, sw*
+
+          **alias**: *eq, sw*
+
+          **firstname**: *eq, sw*
+
+          **lastname**: *eq, sw*
+
+          **email**: *eq, sw*
+
+          **cloudStatus**: *eq*
+
+          **processingState**: *eq*
+
+          **correlated**: *eq*
+
+          **protected**: *eq*
+        example: id eq "6c9079b270a266a60170a2779fcb0006" or correlated eq false
+        in: query
+        name: filters
+        required: false
+        schema:
+          type: string
+      - description: |-
+          Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters/#sorting-results)
+
+          Sorting is supported for the following fields: **name, alias, cloudStatus**
+        example: "name,-cloudStatus"
+        in: query
+        name: sorters
+        required: false
+        schema:
+          format: comma-separated
+          type: string
+      - description: |-
+          Adds additional filter to filters query parameter.
+
+          CORRELATED_ONLY adds correlated=true and returns only identities that are correlated.
+
+          NONE does not add any and returns all identities that satisfy filters query parameter.
+        example: NONE
+        in: query
+        name: defaultFilter
+        required: false
+        schema:
+          default: CORRELATED_ONLY
+          enum:
+          - CORRELATED_ONLY
+          - NONE
+          type: string
+      - description: |-
+          If *true* it will populate the *X-Total-Count* response header with the number of results that would be returned if *limit* and *offset* were ignored.
+
+          Since requesting a total count can have a performance impact, it is recommended not to send **count=true** if that value will not be used.
+
+          See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information.
+        example: true
+        in: query
+        name: count
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: |-
+          Max number of results to return.
+          See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information.
+        example: 250
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 250
+          format: int32
+          maximum: 250
+          minimum: 0
+          type: integer
+      - description: |-
+          Offset into the full result set. Usually specified with *limit* to paginate through the results.
+          See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information.
+        example: 0
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          format: int32
+          minimum: 0
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Identity'
+                type: array
+          description: List of identities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      summary: List Identities
+      tags:
+      - Identities
+  /identities/{id}:
+    delete:
+      description: The API returns successful response if the requested identity was
+        deleted.
+      operationId: deleteIdentity
+      parameters:
+      - description: Identity Id
+        example: ef38f94347e94562b5bb8424a56397d8
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No content - indicates the request was successful but there
+            is no content to be returned in the response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request is invalid. It may indicate
+            that the specified identity is marked as protected and cannot be deleted.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "404":
+          content:
+            application/json:
+              examples:
+                "404":
+                  summary: An example of a 404 response object
+                  value:
+                    detailCode: 404 Not found
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server did not find a current representation for the
+                        target resource.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Not Found - returned if the request URL refers to a resource
+            or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      security:
+      - oauth2:
+        - idn:identity:delete
+      summary: Deletes an identity.
+      tags:
+      - Identities
+    get:
+      description: This API returns a single identity using the Identity ID.
+      operationId: getIdentity
+      parameters:
+      - description: Identity Id
+        example: ef38f94347e94562b5bb8424a56397d8
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+          description: An identity object
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "404":
+          content:
+            application/json:
+              examples:
+                "404":
+                  summary: An example of a 404 response object
+                  value:
+                    detailCode: 404 Not found
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server did not find a current representation for the
+                        target resource.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Not Found - returned if the request URL refers to a resource
+            or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      security:
+      - oauth2:
+        - idn:identity:read
+      summary: Identity Details
+      tags:
+      - Identities
   /identity-profiles:
     get:
       description: |-
@@ -13474,6 +14017,7 @@ paths:
           **name**: *eq, ne*
 
           **priority**: *eq, ne*
+        example: id eq 8c190e6787aa4ed9a90bd9d5344523fb
         in: query
         name: filters
         schema:
@@ -13482,6 +14026,7 @@ paths:
           Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#sorting-results)
 
           Sorting is supported for the following fields: **id**, **name**, **priority**
+        example: "name,-priority"
         in: query
         name: sorters
         schema:
@@ -13555,6 +14100,7 @@ paths:
       security:
       - oauth2:
         - idn:identity-profile:read
+        - idn:identity-profile:manage
       summary: Identity Profiles list
       tags:
       - Identity Profiles
@@ -13634,7 +14180,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:create
+        - idn:identity-profile:manage
       summary: Create an Identity Profile
       tags:
       - Identity Profiles
@@ -13718,7 +14264,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:delete
+        - idn:identity-profile:manage
       summary: Delete Identity Profiles
       tags:
       - Identity Profiles
@@ -13776,6 +14322,7 @@ paths:
           **name**: *eq, ne*
 
           **priority**: *eq, ne*
+        example: id eq 8c190e6787aa4ed9a90bd9d5344523fb
         in: query
         name: filters
         schema:
@@ -13784,6 +14331,7 @@ paths:
           Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#sorting-results)
 
           Sorting is supported for the following fields: **id**, **name**, **priority**
+        example: "name,-priority"
         in: query
         name: sorters
         schema:
@@ -13875,6 +14423,7 @@ paths:
       security:
       - oauth2:
         - idn:identity-profile:read
+        - idn:identity-profile:manage
       summary: Export Identity Profiles
       tags:
       - Identity Profiles
@@ -13956,7 +14505,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:create
+        - idn:identity-profile:manage
       summary: Import Identity Profiles
       tags:
       - Identity Profiles
@@ -14039,7 +14588,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:preview
+        - idn:identity-profile:manage
       summary: Generate Identity Profile Preview
       tags:
       - Identity Profiles
@@ -14142,7 +14691,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:delete
+        - idn:identity-profile:manage
       summary: Delete an Identity Profile
       tags:
       - Identity Profiles
@@ -14244,6 +14793,7 @@ paths:
       security:
       - oauth2:
         - idn:identity-profile:read
+        - idn:identity-profile:manage
       summary: Gets a single Identity Profile
       tags:
       - Identity Profiles
@@ -14372,7 +14922,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:update
+        - idn:identity-profile:manage
       summary: Update the Identity Profile
       tags:
       - Identity Profiles
@@ -14474,8 +15024,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile-default-mapping:read
-      summary: Gets the default identity attribute config
+        - idn:identity-profile:manage
+      summary: Default identity attribute config
       tags:
       - Identity Profiles
   /identity-profiles/{identity-profile-id}/refresh-identities:
@@ -14577,8 +15127,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:identity-profile:refresh
-      summary: Refreshes all the identities under this profile
+        - idn:identity-profile:manage
+      summary: Refreshes all identities under profile
       tags:
       - Identity Profiles
   /identity-profiles/{identity-profile-id}/lifecycle-states/{lifecycle-state-id}:
@@ -15015,13 +15565,11 @@ paths:
       - Non-Employee Lifecycle Management
   /non-employee-records/{id}:
     delete:
-      description: |-
-        This request will delete a non-employee record.
-        Request will require the following security scope:
-        'idn:nesr:delete'
+      description: This request will delete a non-employee record.
       operationId: deleteNonEmployeeRecord
       parameters:
       - description: Non-Employee record id (UUID)
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: id
         required: true
@@ -15094,10 +15642,7 @@ paths:
       tags:
       - Non-Employee Lifecycle Management
     get:
-      description: |-
-        This gets a non-employee record.
-        Request will require the following scope:
-        'idn:nesr:read'
+      description: This gets a non-employee record.
       operationId: getNonEmployeeRecord
       parameters:
       - description: Non-Employee record id (UUID)
@@ -15181,6 +15726,7 @@ paths:
       operationId: patchNonEmployeeRecord
       parameters:
       - description: Non-employee record id (UUID)
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: id
         required: true
@@ -15295,6 +15841,7 @@ paths:
       operationId: updateNonEmployeeRecord
       parameters:
       - description: Non-employee record id (UUID)
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: id
         required: true
@@ -15721,11 +16268,11 @@ paths:
       - Non-Employee Lifecycle Management
   /non-employee-requests/{id}:
     delete:
-      description: "This request will delete a non-employee request.  \nRequest will\
-        \ require the following scope:\n'idn:nesr:delete'"
+      description: This request will delete a non-employee request.
       operationId: deleteNonEmployeeRequest
       parameters:
       - description: Non-Employee request id in the UUID format
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: id
         required: true
@@ -16229,13 +16776,11 @@ paths:
       - Non-Employee Lifecycle Management
   /non-employee-sources/{sourceId}:
     delete:
-      description: |-
-        This request will delete a non-employee source.
-        Request will require the following security scope:
-        'idn:nesr:delete'
+      description: This request will delete a non-employee source.
       operationId: deleteNonEmployeeSource
       parameters:
       - description: Source Id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -16388,13 +16933,12 @@ paths:
       tags:
       - Non-Employee Lifecycle Management
     patch:
-      description: |-
-        patch a non-employee source. (Partial Update)  Patchable field: **name, description, approvers, accountManagers**
-        Request will require the following security scope:
-        'idn:nesr:update'
+      description: "patch a non-employee source. (Partial Update)  Patchable field:\
+        \ **name, description, approvers, accountManagers**"
       operationId: patchNonEmployeeSource
       parameters:
       - description: Source Id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -16491,10 +17035,8 @@ paths:
       - Non-Employee Lifecycle Management
   /non-employee-sources/{id}/non-employees/download:
     get:
-      description: |-
-        This requests a CSV download for all non-employees from a provided source.
-        Request will need the following security scope:
-        'idn:nesr:read'
+      description: This requests a CSV download for all non-employees from a provided
+        source.
       operationId: exportNonEmployeeRecords
       parameters:
       - description: Source Id (UUID)
@@ -16590,6 +17132,7 @@ paths:
       security:
       - oauth2:
         - idn:nelm:read
+        - idn:nelm:manage
       summary: Exports Non-Employee Records to CSV
       tags:
       - Non-Employee Lifecycle Management
@@ -16599,9 +17142,10 @@ paths:
         This post will import, or update, Non-Employee records found in the CSV.
         Request will need the following security scope:
         'idn:nesr:create'
-      operationId: uploadNonEmployeeRecordsInBulk
+      operationId: importNonEmployeeRecordsInBulk
       parameters:
       - description: Source Id (UUID)
+        example: e136567de87e4d029e60b3c3c55db56d
         in: path
         name: id
         required: true
@@ -16610,16 +17154,8 @@ paths:
       requestBody:
         content:
           multipart/form-data:
-            example:
-              data: "accountName,firstName,lastName,phone,email,manager,startDate,endDate\
-                \ Jon.Smith, Jon, Smith, 555-555-5555, jon@jon.doe.nope.com, Jim Smith,\
-                \ 2020-04-05T08:00:00-10:00, 2020-08-07T19:00:00-10:00 William.Chaffin,\
-                \ William, Chaffin, 555-555-5555, william@chaffins.nope.com, Bertram\
-                \ Chaffin, 2020-04-05T08:00:00-10:00, 2020-08-07T19:00:00-10:00"
             schema:
-              $ref: '#/components/schemas/uploadNonEmployeeRecordsInBulk_request'
-        description: The form-data "name" attribute for the file content must be "data".
-          See the schema specification.
+              $ref: '#/components/schemas/importNonEmployeeRecordsInBulk_request'
       responses:
         "202":
           content:
@@ -16714,10 +17250,6 @@ paths:
     get:
       description: |
         The nonEmployeeBulkUploadStatus API returns the status of the newest bulk upload job for the specified source.
-
-        Request will need the following scope:
-
-        'idn:nesr:read'
       operationId: getNonEmployeeBulkUploadStatus
       parameters:
       - description: Source ID (UUID)
@@ -16793,7 +17325,7 @@ paths:
       security:
       - oauth2:
         - idn:nelm:read
-      summary: Obtain the status of bulk upload on the source
+      summary: Bulk upload status on source
       tags:
       - Non-Employee Lifecycle Management
   /non-employee-sources/{id}/schema-attributes-template/download:
@@ -17392,13 +17924,12 @@ paths:
       - Non-Employee Lifecycle Management
   /non-employee-sources/{sourceId}/schema-attributes:
     delete:
-      description: |-
-        This end-point deletes all custom schema attributes for a non-employee source.
-        Request requires a security scope of:
-        'idn:nesr:delete'
+      description: This end-point deletes all custom schema attributes for a non-employee
+        source.
       operationId: deleteNonEmployeeSourceSchemaAttributes
       parameters:
       - description: The Source id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -17467,7 +17998,7 @@ paths:
       security:
       - oauth2:
         - idn:nelm:manage
-      summary: Delete all custom schema attributes for Non-Employee Source
+      summary: Delete all custom schema attributes
       tags:
       - Non-Employee Lifecycle Management
     get:
@@ -17582,13 +18113,16 @@ paths:
       tags:
       - Non-Employee Lifecycle Management
     post:
-      description: |-
-        This API creates a new schema attribute for Non-Employee Source. The schema technical name must be unique in the source. Attempts to create a schema attribute with an existing name will result in a "400.1.409 Reference conflict" response. At most, 10 custom attributes can be created per schema. Attempts to create more than 10 will result in a "400.1.4 Limit violation" response.
-        Request requires a security scope of:
-        'idn:nesr:create'
+      description: "This API creates a new schema attribute for Non-Employee Source.\
+        \ The schema technical name must be unique in the source. Attempts to create\
+        \ a schema attribute with an existing name will result in a \"400.1.409 Reference\
+        \ conflict\" response. At most, 10 custom attributes can be created per schema.\
+        \ Attempts to create more than 10 will result in a \"400.1.4 Limit violation\"\
+        \ response."
       operationId: createNonEmployeeSourceSchemaAttributes
       parameters:
       - description: The Source id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -17666,26 +18200,24 @@ paths:
       security:
       - oauth2:
         - idn:nelm:manage
-      summary: Create a new Schema Attribute for Non-Employee Source
+      summary: Create Non-Employee Source Schema Attribute
       tags:
       - Non-Employee Lifecycle Management
   /non-employee-sources/{sourceId}/schema-attributes/{attributeId}:
     delete:
       description: |
         This end-point deletes a specific schema attribute for a non-employee source.
-
-        Request will require a security scope of:
-
-        'idn:nesr:delete'
       operationId: deleteNonEmployeeSchemaAttribute
       parameters:
       - description: The Schema Attribute Id (UUID)
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: attributeId
         required: true
         schema:
           type: string
       - description: The Source id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -17754,7 +18286,7 @@ paths:
       security:
       - oauth2:
         - idn:nelm:manage
-      summary: Delete a Schema Attribute for Non-Employee Source
+      summary: Delete Non-Employee Source's Schema Attribute
       tags:
       - Non-Employee Lifecycle Management
     get:
@@ -17850,19 +18382,17 @@ paths:
     patch:
       description: |
         This end-point patches a specific schema attribute for a non-employee SourceId.
-
-        Request will require a security scope of:
-
-        'idn:nesr:update'
       operationId: patchNonEmployeeSchemaAttribute
       parameters:
       - description: The Schema Attribute Id (UUID)
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: attributeId
         required: true
         schema:
           type: string
       - description: The Source id
+        example: 2c91808b6ef1d43e016efba0ce470904
         in: path
         name: sourceId
         required: true
@@ -17969,7 +18499,7 @@ paths:
       security:
       - oauth2:
         - idn:nelm:manage
-      summary: Patch a Schema Attribute for Non-Employee Source
+      summary: Patch Non-Employee Source's Schema Attribute
       tags:
       - Non-Employee Lifecycle Management
   /managed-clients/{id}/status:
@@ -18075,7 +18605,7 @@ paths:
       security:
       - oauth2:
         - idn:managed-client-status:read
-      summary: Get a specified Managed Client Status.
+      summary: Specified Managed Client Status.
       tags:
       - Managed Clients
     post:
@@ -18178,8 +18708,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:managed-client-status:update
-      summary: Handle a status request from a client
+        - idn:managed-client-status:manage
+      summary: Handle status request from client
       tags:
       - Managed Clients
   /managed-clusters/{id}:
@@ -18209,6 +18739,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -18245,18 +18782,44 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:managed-cluster:read
+        - idn:remote-client:read
+        - idn:remote-client:manage
       summary: Get a specified ManagedCluster.
       tags:
       - Managed Clusters
   /managed-clusters/{id}/log-config:
     get:
-      description: Get log configuration for a managed cluster.
+      description: Get managed cluster's log configuration.
       operationId: getClientLogConfiguration
       parameters:
-      - description: ID of the ManagedCluster to get log configuration for
+      - description: ID of ManagedCluster to get log configuration for
         explode: false
         in: path
         name: id
@@ -18270,10 +18833,8 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/ClientLogConfiguration'
-                type: array
-          description: ManagedCluster log configuration matching the given cluster
+                $ref: '#/components/schemas/ClientLogConfiguration'
+          description: Log configuration of ManagedCluster matching given cluster
             ID
         "400":
           content:
@@ -18281,6 +18842,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -18317,17 +18885,43 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:managed-cluster-log-config:read
-      summary: get ManagedCluster Log Configuration for a specified cluster
+        - idn:remote-client:read
+        - idn:remote-client:manage
+      summary: Get managed cluster's log configuration
       tags:
       - Managed Clusters
     put:
-      description: Update log configuration for a managed cluster.
-      operationId: updateClientLogConfiguration
+      description: Update managed cluster's log configuration
+      operationId: putClientLogConfiguration
       parameters:
-      - description: ID of the ManagedCluster to update log configuration for
+      - description: ID of ManagedCluster to update log configuration for
         explode: false
         in: path
         name: id
@@ -18341,7 +18935,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ClientLogConfiguration'
-        description: ClientLogConfiguration for the given ManagedCluster
+        description: ClientLogConfiguration for given ManagedCluster
         required: true
       responses:
         "200":
@@ -18349,14 +18943,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientLogConfiguration'
-          description: Responds with updated ClientLogConfiguration for the given
-            ManagedCluster.
+          description: Responds with updated ClientLogConfiguration for given ManagedCluster
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -18393,10 +18993,35 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:managed-cluster-log-config:write
-      summary: Update log configuration for a specified cluster.
+        - idn:remote-client:manage
+      summary: Update managed cluster's log configuration
       tags:
       - Managed Clusters
   /managed-clusters:
@@ -18447,6 +19072,7 @@ paths:
           Filtering is supported for the following fields and operators:
 
           **operational**: *eq*
+        example: operational eq operation
         in: query
         name: filters
         schema:
@@ -18518,10 +19144,176 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:managed-cluster:read
+        - idn:remote-client:read
+        - idn:remote-client:manage
       summary: Retrieve all Managed Clusters.
       tags:
       - Managed Clusters
+  /mail-from-attributes:
+    put:
+      description: Change the MAIL FROM domain of an AWS SES email identity and provide
+        the MX and TXT records to be placed in the caller's DNS
+      operationId: putMailFromAttributes
+      requestBody:
+        content:
+          application/json:
+            example:
+              identity: BobSmith@sailpoint.com
+              mailFromDomain: example.sailpoint.com
+            schema:
+              $ref: '#/components/schemas/MailFromAttributesDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailFromAttributes'
+          description: MAIL FROM Attributes required to verify the change
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      security:
+      - oauth2:
+        - sp:notification-mail-from-attributes:write
+      summary: Change MAIL FROM domain
+      tags:
+      - Notifications
+  /mail-from-attribute/{id}:
+    get:
+      description: Retrieve MAIL FROM attributes for a given AWS SES identity.
+      operationId: getMailFromAttributes
+      parameters:
+      - description: "Returns the MX and TXT record to be put in your DNS, as well\
+          \ as the MAIL FROM domain status"
+        example: bobsmith@sailpoint.com
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailFromAttributes'
+          description: MAIL FROM Attributes object
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      security:
+      - oauth2:
+        - sp:notification-mail-from-attributes:read
+      summary: Get MAIL FROM Attributes
+      tags:
+      - Notifications
   /mfa/{method}/config:
     get:
       description: This API returns the configuration of a given MFA method. A token
@@ -18606,8 +19398,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:mfa-config:read
-      summary: Get configuration of a MFA method
+        - idn:mfa-configuration:read
+        - idn:mfa-configuration:manage
+      summary: Configuration of a MFA method
       tags:
       - MFA Configuration
     put:
@@ -18704,8 +19497,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:mfa-config:write
-      summary: Set configuration of a MFA method
+        - idn:mfa-configuration:manage
+      summary: Set MFA method configuration
       tags:
       - MFA Configuration
   /mfa/{method}/test:
@@ -18791,8 +19584,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:mfa-config:read
-      summary: Test configuration of a MFA method
+        - idn:mfa-configuration:read
+        - idn:mfa-configuration:manage
+      summary: MFA method's test configuration
       tags:
       - MFA Configuration
   /notification-template-defaults:
@@ -19756,10 +20550,8 @@ paths:
       - OAuth Clients
   /org-config:
     get:
-      description: |-
-        Get org configuration with only external (org admin) accessible properties for the current org.  Request will require the following security scope:
-        - 'idn:org-config:read'
-        - 'idn:org-config-internal:read'
+      description: Get org configuration with only external (org admin) accessible
+        properties for the current org.
       operationId: getOrgConfig
       responses:
         "200":
@@ -19842,15 +20634,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:org-configs:read
+        - idn:org-configs:manage
       summary: Get Org configuration settings
       tags:
       - Org Config
     patch:
-      description: |-
-        Patch configuration of the current org using http://jsonpatch.com/ syntax.  Commonly used for changing the time zone of an org.
-        Request will require a security scope of:
-        - 'idn:org-config:write'
-        - 'idn:org-config-internal:write'
+      description: Patch configuration of the current org using http://jsonpatch.com/
+        syntax.  Commonly used for changing the time zone of an org.
       operationId: patchOrgConfig
       requestBody:
         content:
@@ -19947,17 +20740,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:org-configs:manage
       summary: Patch an Org configuration property
       tags:
       - Org Config
   /org-config/valid-time-zones:
     get:
-      description: |-
-        Get a list of valid time zones that can be set in org configurations.
-        Request will require the following security scope:
-        - 'idn:org-config-user:read'
-        - 'idn:org-config:read'
-        - 'idn:org-config-internal:read'
+      description: Get a list of valid time zones that can be set in org configurations.
       operationId: getValidTimeZones
       responses:
         "200":
@@ -20033,6 +20824,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:org-configs:read
+        - idn:org-configs-user:read
       summary: Get list of time zones
       tags:
       - Org Config
@@ -20881,6 +21676,12 @@ paths:
             qazxsws
 
             ```
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -20949,37 +21750,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-dictionary-management:read
       summary: Get Password Dictionary
-      tags:
-      - Password Dictionary
-    head:
-      description: |-
-        Used to check the status of password dictionary.
-        A token with ORG_ADMIN authority is required to call this API.
-      operationId: getPasswordDictionaryFileStatus
-      responses:
-        "200":
-          description: Password dictionary exists
-        "404":
-          description: Password dictionary does not exist
-        "500":
-          content:
-            application/json:
-              examples:
-                "500":
-                  summary: An example of a 500 response object
-                  value:
-                    detailCode: 500.0 Internal Fault
-                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
-                    messages:
-                    - locale: en-US
-                      localeOrigin: DEFAULT
-                      text: An internal fault occurred.
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-          description: Internal Server Error - Returned if there is an unexpected
-            error.
-      summary: Get Password Dictionary Status
       tags:
       - Password Dictionary
     put:
@@ -21028,6 +21802,12 @@ paths:
           description: Successfully updated.
         "201":
           description: Created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -21053,6 +21833,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "404":
+          content:
+            application/json:
+              examples:
+                "404":
+                  summary: An example of a 404 response object
+                  value:
+                    detailCode: 404 Not found
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server did not find a current representation for the
+                        target resource.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Not Found - returned if the request URL refers to a resource
+            or object that does not exist
         "429":
           content:
             application/json:
@@ -21078,6 +21876,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-dictionary:manage
       summary: Update Password Dictionary
       tags:
       - Password Dictionary
@@ -21183,12 +21984,37 @@ paths:
   /set-password:
     post:
       description: "This API is used to set a password for an identity. \n\nAn identity\
-        \ can change their own password if they use a token generated by their IDN\
-        \ user, such as a [personal access token](https://developer.sailpoint.com/idn/api/authentication#personal-access-tokens)\
+        \ can change their own password (as well as any of their accounts' passwords)\
+        \ if they use a token generated by their IDN user, such as a [personal access\
+        \ token](https://developer.sailpoint.com/idn/api/authentication#personal-access-tokens)\
         \ or [\"authorization_code\" derived OAuth token](https://developer.sailpoint.com/idn/api/authentication#authorization-code-grant-flow).\n\
         \nA token with [API authority](https://developer.sailpoint.com/idn/api/authentication#client-credentials-grant-flow)\
-        \ can be used to change **any** identity's password.  \"API authority\" refers\
-        \ to a token that only has the \"client_credentials\" grant type.\n"
+        \ can be used to change **any** identity's password or the password of any\
+        \ of the identity's accounts. \n\"API authority\" refers to a token that only\
+        \ has the \"client_credentials\" grant type.\n\nYou can use this endpoint\
+        \ to generate an `encryptedPassword` (RSA encrypted using publicKey). \nTo\
+        \ do so, follow these steps:\n\n1. Use [Query Password Info](https://developer.sailpoint.com/idn/api/v3/query-password-info)\
+        \ to get the following information: `identityId`, `sourceId`, `publicKeyId`,\
+        \ `publicKey`, `accounts`, and `policies`. \n\n2. Choose an account from the\
+        \ previous response that you will provide as an `accountId` in your request\
+        \ to set an encrypted password. \n\n3. Use [Set Identity's Password](https://developer.sailpoint.com/idn/api/v3/set-password)\
+        \ and provide the information you got from your earlier query. Then add this\
+        \ code to your request to get the encrypted password:\n\n```java\nimport javax.crypto.Cipher;\n\
+        import java.security.KeyFactory;\nimport java.security.PublicKey;\nimport\
+        \ java.security.spec.X509EncodedKeySpec;\nimport java util.Base64;\n\nString\
+        \ encrypt(String publicKey, String toEncrypt) throws Exception {\n  byte[]\
+        \ publicKeyBytes = Base64.getDecoder().decode(publicKey);\n  byte[] encryptedBytes\
+        \ = encryptRsa(publicKeyBytes, toEncrypt.getBytes(\"UTF-8\"));\n  return Base64.getEncoder().encodeToString(encryptedBytes);\n\
+        }\n\nprivate byte[] encryptRsa(byte[] publicKeyBytes, byte[] toEncryptBytes)\
+        \ throws Exception {\n  PublicKey key = KeyFactory.getInstance(\"RSA\").generatePublic(new\
+        \ X509EncodedKeySpec(publicKeyBytes));\n  String transformation = \"RSA/ECB/PKCS1Padding\"\
+        ;\n  Cipher cipher = Cipher.getInstance(transformation);\n  cipher.init(1,\
+        \ key);\n  return cipher.doFinal(toEncryptBytes);\n}\n```    \n\nIn this example,\
+        \ `toEncrypt` refers to the plain text password you are setting and then encrypting,\
+        \ and the `publicKey` refers to the publicKey you got from the first request\
+        \ you sent. \n\nYou can then use [Get Password Change Request Status](https://developer.sailpoint.com/idn/api/v3/get-password-change-status)\
+        \ to check the password change request status. To do so, you must provide\
+        \ the `requestId` from your earlier request to set the password. \n"
       operationId: setIdentityPassword
       requestBody:
         content:
@@ -21424,6 +22250,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21442,6 +22275,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21459,6 +22300,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-sync-group-management:read
       summary: Get Password Sync Group List
       tags:
       - Password Sync Groups
@@ -21498,6 +22342,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21516,6 +22367,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21533,6 +22392,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-sync-group-management:write
       summary: Create Password Sync Group
       tags:
       - Password Sync Groups
@@ -21559,6 +22421,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21577,6 +22446,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21594,6 +22471,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-sync-group-management:write
       summary: Delete Password Sync Group by ID
       tags:
       - Password Sync Groups
@@ -21629,6 +22509,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21665,6 +22552,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21682,6 +22577,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-sync-group-management:read
       summary: Get Password Sync Group by ID
       tags:
       - Password Sync Groups
@@ -21730,6 +22628,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21766,6 +22671,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21783,6 +22696,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-sync-group-management:write
       summary: Update Password Sync Group by ID
       tags:
       - Password Sync Groups
@@ -21803,6 +22719,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/PasswordOrgConfig'
           description: Reference to the password org config.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21821,6 +22750,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21838,6 +22775,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-org-config:read
       summary: Get Password Org Config
       tags:
       - Password Configuration
@@ -21869,6 +22809,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/PasswordOrgConfig'
           description: Reference to the password org config.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21887,6 +22840,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21904,6 +22865,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-org-config:write
       summary: Create Password Org Config
       tags:
       - Password Configuration
@@ -21933,6 +22897,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/PasswordOrgConfig'
           description: Reference to the password org config.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -21951,6 +22928,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
         "500":
           content:
             application/json:
@@ -21968,15 +22953,19 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - idn:password-org-config:write
       summary: Update Password Org Config
       tags:
       - Password Configuration
   /peer-group-strategies/{strategy}/identity-outliers:
     get:
-      description: "This API will be used by Identity Governance systems to identify\
-        \ identities that are not included in an organization's peer groups. By default,\
-        \ 250 identities are returned. You can specify between 1 and 1000 number of\
-        \ identities that can be returned."
+      deprecated: true
+      description: "-- Deprecated : See 'IAI Outliers' This API will be used by Identity\
+        \ Governance systems to identify identities that are not included in an organization's\
+        \ peer groups. By default, 250 identities are returned. You can specify between\
+        \ 1 and 1000 number of identities that can be returned."
       operationId: getPeerGroupOutliers
       parameters:
       - description: "The strategy used to create peer groups. Currently, 'entitlement'\
@@ -22047,6 +23036,24 @@ paths:
                 $ref: '#/components/schemas/listAccessProfiles_401_response'
           description: "Unauthorized - Returned if there is no authorization header,\
             \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
         "429":
           content:
             application/json:
@@ -26293,7 +27300,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:read
+        - idn:role-unchecked:read
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
         - idn:role-checked:read
       summary: List Roles
       tags:
@@ -26376,8 +27385,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:create
-        - idn:role-checked:create
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
       summary: Create a Role
       tags:
       - Roles
@@ -26457,8 +27466,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:delete
-        - idn:role-checked:delete
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
       summary: Delete a Role
       tags:
       - Roles
@@ -26541,7 +27550,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:read
+        - idn:role-unchecked:read
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
         - idn:role-checked:read
       summary: Get a Role
       tags:
@@ -26696,9 +27707,131 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:update
-        - idn:role-checked:update
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
       summary: Patch a specified Role
+      tags:
+      - Roles
+  /roles/bulk-delete:
+    post:
+      description: |-
+        This API initiates a bulk deletion of one or more Roles.
+
+        A token with API, ORG_ADMIN, ROLE_ADMIN, or ROLE_SUBADMIN authority is required to call this API. In addition, a token with ROLE_SUBADMIN authority may only call this API if all Roles included in the request are associated to Sources with management workgroups of which the ROLE_SUBADMIN is a member.
+      operationId: bulkDeleteRoles
+      requestBody:
+        content:
+          application/json:
+            example:
+              roleIds:
+              - 2c91808876438bb2017668b91919ecca
+              - 2c91808876438ba801766e129f151816
+            schema:
+              $ref: '#/components/schemas/RoleBulkDeleteRequest'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              example:
+                type: TASK_RESULT
+                id: 464ae7bf791e49fdb74606a2e4a89635
+                name: null
+              schema:
+                $ref: '#/components/schemas/BaseReferenceDto'
+          description: Returns an object with the id of the task performing the delete
+            operation.
+        "400":
+          content:
+            application/json:
+              examples:
+                "400.1 Bad Request Content":
+                  description: Response for bad request content
+                  value:
+                    detailCode: 400.1 Bad Request Content
+                    trackingId: 1ea1adcb84da4dcb890145e05745774e
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The request was syntactically correct but its content
+                        is semantically invalid.
+                "400.1 Role ids limit violation":
+                  description: Role ids limit violation response
+                  value:
+                    detailCode: 400.1 Bad Request Content
+                    trackingId: 77aa89ac6f0e422dbc588866abc22be9
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: roleIds count exceeded max limit of 50 for bulk-delete.
+                "400.1.404 Referenced object not found":
+                  description: Referenced object not found response
+                  value:
+                    detailCode: 400.1.404 Referenced object not found
+                    trackingId: 77aa89ac6f0e422dbc588866abc22be9
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: "Referenced roleIds [\"2c91808876438bb2017668b91919ecca\"\
+                        ] was not found."
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      security:
+      - oauth2:
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
+      summary: Delete Role(s)
       tags:
       - Roles
   /roles/{id}/assigned-identities:
@@ -26844,9 +27977,11 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:role:read
+        - idn:role-unchecked:read
+        - idn:role-unchecked:manage
+        - idn:role-checked:manage
         - idn:role-checked:read
-      summary: Get a list of Identities assigned a Role
+      summary: Identities assigned a Role
       tags:
       - Roles
   /segments:
@@ -27497,6 +28632,7 @@ paths:
           Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#sorting-results)
 
           Sorting is supported for the following fields: **name**
+        example: name
         explode: true
         in: query
         name: sorters
@@ -27516,6 +28652,7 @@ paths:
           **type**: *eq, in*
 
           **cluster**: *eq, in*
+        example: id eq 2c91808b6ef1d43e016efba0ce470904
         explode: true
         in: query
         name: filters
@@ -27721,9 +28858,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:service-desk-admin:write
-        - idn:service-desk-integration:write
-      summary: Create a new Service Desk integration
+        - idn:service-desk-admin:manage
+        - idn:service-desk-integration:manage
+      summary: Create new Service Desk integration
       tags:
       - Service Desk Integration
   /service-desk-integrations/{id}:
@@ -27820,9 +28957,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:service-desk-admin:write
-        - idn:service-desk-integration:write
-      summary: Delete a Service Desk integration by ID
+        - idn:service-desk-admin:manage
+        - idn:service-desk-integration:manage
+      summary: Delete a Service Desk integration
       tags:
       - Service Desk Integration
     get:
@@ -27924,7 +29061,7 @@ paths:
       - oauth2:
         - idn:service-desk-admin:read
         - idn:service-desk-integration:read
-      summary: Get a Service Desk integration by ID
+      summary: Get a Service Desk integration
       tags:
       - Service Desk Integration
     patch:
@@ -28036,9 +29173,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:service-desk-admin:write
-        - idn:service-desk-integration:write
-      summary: Service Desk Integration Update - PATCH
+        - idn:service-desk-admin:manage
+        - idn:service-desk-integration:manage
+      summary: Service Desk Integration Update PATCH
       tags:
       - Service Desk Integration
     put:
@@ -28146,9 +29283,9 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:service-desk-admin:write
-        - idn:service-desk-integration:write
-      summary: Update a Service Desk integration by ID
+        - idn:service-desk-admin:manage
+        - idn:service-desk-integration:manage
+      summary: Update a Service Desk integration
       tags:
       - Service Desk Integration
   /service-desk-integrations/types:
@@ -28244,7 +29381,9 @@ paths:
       security:
       - oauth2:
         - idn:service-desk-admin:read
+        - idn:service-desk-admin:manage
         - idn:service-desk-integration:read
+        - idn:service-desk-integration:manage
       summary: Service Desk Integration Types List.
       tags:
       - Service Desk Integration
@@ -28444,15 +29583,17 @@ paths:
       security:
       - oauth2:
         - idn:service-desk-admin:read
+        - idn:service-desk-admin:manage
         - idn:service-desk-integration:read
-      summary: Get the time check configuration of queued SDIM tickets
+        - idn:service-desk-integration:manage
+      summary: Get the time check configuration
       tags:
       - Service Desk Integration
     put:
       description: Update the time check configuration of queued SDIM tickets.  A
         token with Org Admin or Service Desk Admin authority is required to access
         this endpoint.
-      operationId: updateManagedClientStatusCheckDetails
+      operationId: updateStatusCheckDetails
       requestBody:
         content:
           application/json:
@@ -28543,17 +29684,15 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:service-desk-admin:write
-        - idn:service-desk-integration:write
-      summary: Update the time check configuration of queued SDIM tickets
+        - idn:service-desk-admin:manage
+        - idn:service-desk-integration:manage
+      summary: Update the time check configuration
       tags:
       - Service Desk Integration
   /sp-config/export:
     post:
-      description: |-
-        This post will export objects from the tenant to a JSON configuration file.
-        Request will need one of the following security scopes:
-        - sp:config:read - sp:config:manage
+      description: This post will export objects from the tenant to a JSON configuration
+        file.
       operationId: exportSpConfig
       requestBody:
         content:
@@ -28710,7 +29849,8 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:config:export
+        - sp:config:read
+        - sp:config:manage
       summary: Initiates Configuration Objects Export Job.
       tags:
       - SP-Config
@@ -29288,10 +30428,9 @@ paths:
       - SP-Config
   /sp-config/config-objects:
     get:
-      description: |-
-        This gets the list of object configurations which are known to the tenant export/import service. Object configurations that contain "importUrl" and "exportUrl" are available for export/import.
-        Request will need one of the following security scopes:
-        - sp:config:read - sp:config:manage
+      description: This gets the list of object configurations which are known to
+        the tenant export/import service. Object configurations that contain "importUrl"
+        and "exportUrl" are available for export/import.
       operationId: listSpConfigObjects
       responses:
         "200":
@@ -29378,7 +30517,8 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:config:export
+        - sp:config:read
+        - sp:config:manage
       summary: Get Config Object details
       tags:
       - SP-Config
@@ -29574,7 +30714,13 @@ paths:
         A token with ORG_ADMIN, SOURCE_ADMIN, or SOURCE_SUBADMIN authority is required to call this API.
       operationId: createSource
       parameters:
-      - description: Configures the source as a DelimitedFile type of source.
+      - description: "If this parameter is `true`, it configures the source as a Delimited\
+          \ File (CSV) source. Setting this to `true` will automatically set the `type`\
+          \ of the source to `DelimitedFile`.  You must use this query parameter to\
+          \ create a Delimited File source as you would in the UI.  If you don't set\
+          \ this query parameter and you attempt to set the `type` attribute directly,\
+          \ the request won't correctly generate the source.  "
+        example: false
         in: query
         name: provisionAsCsv
         required: false
@@ -30385,6 +31531,12 @@ paths:
                 $ref: '#/components/schemas/StatusResponse'
           description: The result of checking connection to the source connector with
             response from it.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -30455,8 +31607,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-connector:write
-      summary: Check connection for the source connector.
+        - idn:source-connector:manage
+      summary: Check connection for source connector.
       tags:
       - Sources
   /sources/{sourceId}/connector/peek-resource-objects:
@@ -30562,8 +31714,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-connector:write
-      summary: Peek resource objects from the source connector
+        - idn:source-connector:manage
+      summary: Peek source connector's resource objects
       tags:
       - Sources
   /sources/{sourceId}/connector/ping-cluster:
@@ -30587,6 +31739,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
           description: The result of pinging connection with the source connector.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -30657,8 +31815,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-connector:write
-      summary: Ping cluster for the source connector
+        - idn:source-connector:manage
+      summary: Ping cluster for source connector
       tags:
       - Sources
   /sources/{sourceId}/connector/test-configuration:
@@ -30683,6 +31841,12 @@ paths:
                 $ref: '#/components/schemas/StatusResponse'
           description: The result of testing source connector configuration with response
             from it.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
         "401":
           content:
             application/json:
@@ -30753,8 +31917,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-connector:write
-      summary: Test configuration for the source connector
+        - idn:source-connector:manage
+      summary: Test configuration for source connector
       tags:
       - Sources
   /sources/{id}/connectors/source-config:
@@ -30973,13 +32137,16 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:provisioning-policy-list:read
+        - idn:provisioning-policy:read
+        - idn:provisioning-policy:manage
       summary: Lists ProvisioningPolicies
       tags:
       - Sources
     post:
       description: |-
         This API generates a create policy/template based on field value transforms. This API is intended for use when setting up JDBC Provisioning type sources, but it will also work on other source types.
+        Transforms can be used in the provisioning policy to create a new attribute that you only need during provisioning.
+        Refer to [Transforms in Provisioning Policies](https://developer.sailpoint.com/idn/docs/transforms/guides/transforms-in-provisioning-policies) for more information.
         A token with ORG_ADMIN authority is required to call this API.
       operationId: createProvisioningPolicy
       parameters:
@@ -31147,7 +32314,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:provisioning-policy:create
+        - idn:provisioning-policy:manage
       summary: Create Provisioning Policy
       tags:
       - Sources
@@ -31251,7 +32418,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:provisioning-policy:delete
+        - idn:provisioning-policy:manage
       summary: Delete Provisioning Policy by UsageType
       tags:
       - Sources
@@ -31359,12 +32526,17 @@ paths:
       security:
       - oauth2:
         - idn:provisioning-policy:read
+        - idn:provisioning-policy-source:read
+        - idn:provisioning-policy:manage
+        - idn:provisioning-policy-source-admin-operations:manage
       summary: Get Provisioning Policy by UsageType
       tags:
       - Sources
     patch:
       description: |-
         This API selectively updates an existing Provisioning Policy using a JSONPatch payload.
+        Transforms can be used in the provisioning policy to create a new attribute that you only need during provisioning.
+        Refer to [Transforms in Provisioning Policies](https://developer.sailpoint.com/idn/docs/transforms/guides/transforms-in-provisioning-policies) for more information.
         A token with API, ORG_ADMIN, SOURCE_ADMIN, or SOURCE_SUBADMIN authority is required to call this API.
       operationId: updateProvisioningPolicy
       parameters:
@@ -31496,6 +32668,8 @@ paths:
     put:
       description: |-
         This end-point updates the provisioning policy with the specified usage on the specified source in IdentityNow.
+        Transforms can be used in the provisioning policy to create a new attribute that you only need during provisioning.
+        Refer to [Transforms in Provisioning Policies](https://developer.sailpoint.com/idn/docs/transforms/guides/transforms-in-provisioning-policies) for more information.
         A token with API, ORG_ADMIN, SOURCE_ADMIN, or SOURCE_SUBADMIN authority is required to call this API.
       operationId: putProvisioningPolicy
       parameters:
@@ -31601,7 +32775,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:provisioning-policy:update
+        - idn:provisioning-policy:manage
+        - idn:provisioning-policy-source-admin-operations:manage
       summary: Update Provisioning Policy by UsageType
       tags:
       - Sources
@@ -31712,7 +32887,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:provisioning-policy-bulk:update
+        - idn:provisioning-policy:manage
       summary: Bulk Update Provisioning Policies
       tags:
       - Sources
@@ -32435,6 +33610,7 @@ paths:
       security:
       - oauth2:
         - idn:source-schema:read
+        - idn:source-schema:manage
       summary: Downloads source accounts schema template
       tags:
       - Sources
@@ -32521,7 +33697,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-schema:update
+        - idn:source-schema:manage
       summary: Uploads source accounts schema template
       tags:
       - Sources
@@ -32625,6 +33801,7 @@ paths:
       security:
       - oauth2:
         - idn:source-schema:read
+        - idn:source-schema:manage
       summary: Downloads source entitlements schema template
       tags:
       - Sources
@@ -32717,7 +33894,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:source-schema:update
+        - idn:source-schema:manage
       summary: Uploads source entitlements schema template
       tags:
       - Sources
@@ -33022,6 +34199,7 @@ paths:
       security:
       - oauth2:
         - idn:sources:read
+        - idn:sources:manage
       summary: Get Source Entitlement Request Configuration
       tags:
       - Sources
@@ -33135,7 +34313,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:sources:update
+        - idn:sources:manage
       summary: Update Source Entitlement Request Configuration
       tags:
       - Sources
@@ -33206,7 +34384,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaggedObject'
+                items:
+                  $ref: '#/components/schemas/TaggedObject'
+                type: array
           description: List of all tagged objects.
         "400":
           content:
@@ -33989,6 +35169,7 @@ paths:
           Filtering is supported for the following fields and operators:
           **internal**: *eq*
           **name**: *eq*, *sw*
+        example: name eq ExampleTransformName123
         explode: true
         in: query
         name: filters
@@ -34020,6 +35201,19 @@ paths:
                   $ref: '#/components/schemas/Transform'
                 type: array
           description: A list of transforms matching the given criteria.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -34038,9 +35232,35 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:transforms-list:read
+        - idn:transform:read
+        - idn:transform:manage
       summary: List transforms
       tags:
       - Transforms
@@ -34076,6 +35296,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -34094,9 +35321,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: "Forbidden - Returned if the user you are running as, doesn't\
             \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:transforms:write
+        - idn:transform:manage
       summary: Create transform
       tags:
       - Transforms
@@ -34108,6 +35360,7 @@ paths:
       operationId: deleteTransform
       parameters:
       - description: ID of the transform to delete
+        example: 2c9180835d2e5168015d32f890ca1581
         explode: false
         in: path
         name: id
@@ -34119,6 +35372,19 @@ paths:
         "204":
           description: No content - indicates the request was successful but there
             is no content to be returned in the response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -34155,9 +35421,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:transforms:delete
+        - idn:transform:manage
       summary: Delete a transform
       tags:
       - Transforms
@@ -34168,6 +35459,7 @@ paths:
       operationId: getTransform
       parameters:
       - description: ID of the transform to retrieve
+        example: 2c9180835d2e5168015d32f890ca1581
         explode: false
         in: path
         name: id
@@ -34182,6 +35474,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Transform'
           description: Transform with the given ID
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -34218,9 +35523,35 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:transforms:read
+        - idn:transform:read
+        - idn:transform:manage
       summary: Transform by ID
       tags:
       - Transforms
@@ -34231,6 +35562,7 @@ paths:
       operationId: updateTransform
       parameters:
       - description: ID of the transform to update
+        example: 2c9180835d2e5168015d32f890ca1581
         explode: false
         in: path
         name: id
@@ -34273,6 +35605,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
         "403":
           content:
             application/json:
@@ -34309,9 +35648,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Not Found - returned if the request URL refers to a resource
             or object that does not exist
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
       security:
       - oauth2:
-        - idn:transforms:write
+        - idn:transform:manage
       summary: Update a transform
       tags:
       - Transforms
@@ -34536,7 +35900,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:read
+        - sp:trigger-service-subscriptions:read
       summary: List Triggers
       tags:
       - Triggers
@@ -34730,7 +36094,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:read
+        - sp:trigger-service-subscriptions:read
       summary: List Subscriptions
       tags:
       - Triggers
@@ -34858,7 +36222,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:create
+        - sp:trigger-service-subscriptions:manage
       summary: Create a Subscription
       tags:
       - Triggers
@@ -34954,7 +36318,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:delete
+        - sp:trigger-service-subscriptions:manage
       summary: Delete a Subscription
       tags:
       - Triggers
@@ -35061,7 +36425,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:update
+        - sp:trigger-service-subscriptions:manage
       summary: Patch a Subscription
       tags:
       - Triggers
@@ -35218,7 +36582,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions:update
+        - sp:trigger-service-subscriptions:manage
       summary: Update a Subscription
       tags:
       - Triggers
@@ -35305,7 +36669,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-subscriptions-validate-filter:create
+        - sp:trigger-service-subscriptions:manage
       summary: Validate a Subscription Filter
       tags:
       - Triggers
@@ -35447,7 +36811,8 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-invocation-status:read
+        - sp:trigger-service-invocation-status:read
+        - sp:trigger-service-invocation-status:manage
       summary: List Latest Invocation Statuses
       tags:
       - Triggers
@@ -35634,7 +36999,7 @@ paths:
             error.
       security:
       - oauth2:
-        - idn:trigger-service-invocation-test:create
+        - sp:trigger-service-invocation-status:manage
       summary: Start a Test Invocation
       tags:
       - Triggers
@@ -35933,27 +37298,18 @@ paths:
       summary: Delete Verified From Address
       tags:
       - Notifications
-  /dkim-attributes/{identities}:
+  /verified-domains:
     get:
-      description: Retrieve DKIM (DomainKeys Identified Mail) attributes from a list
-        of identities. Limit retrieval of 100 identities per call
+      description: Retrieve DKIM (DomainKeys Identified Mail) attributes for all your
+        tenants' AWS SES identities. Limits retrieval to 100 identities per call.
       operationId: getDkimAttributes
-      parameters:
-      - description: Returns the DKIM attributes for each of the given identities
-        example: "bobsmith@sailpoint.com,alex.jordan@sailpoint.com"
-        in: query
-        name: identities
-        required: true
-        schema:
-          format: comma-separated
-          type: string
       responses:
         "200":
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/DkimAttributesDto'
+                  $ref: '#/components/schemas/DkimAttributes'
                 type: array
           description: List of DKIM Attributes
         "400":
@@ -36012,33 +37368,29 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - sp:notification-dkim-attributes:read
       summary: Get DKIM Attributes
       tags:
       - Notifications
-  /verify-domain-dkim:
     post:
       description: Create a domain to be verified via DKIM (DomainKeys Identified
         Mail)
-      operationId: verifyDomainDkim
+      operationId: createDomainDkim
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DomainAddressDto'
+              $ref: '#/components/schemas/DomainAddress'
         required: true
       responses:
         "200":
           content:
             application/json:
-              example:
-              - uq1m3jjk25ckd3whl4n7y46c56r5l6aq
-              - u7pm38jky9ckdawhlsn7y4dcj6f5lpgq
-              - uhpm3jjkjjckdkwhlqn7yw6cjer5tpay
               schema:
-                items:
-                  type: string
-                type: array
-          description: List of DKIM tokens
+                $ref: '#/components/schemas/DomainStatusDto'
+          description: List of DKIM tokens required for the verification process.
         "400":
           content:
             application/json:
@@ -36074,7 +37426,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verifyDomainDkim_405_response'
+                $ref: '#/components/schemas/createDomainDkim_405_response'
           description: "Method Not Allowed - indicates that the server knows the request\
             \ method, but the target resource doesn't support this method."
         "429":
@@ -36102,13 +37454,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
+      security:
+      - oauth2:
+        - sp:notification-verify-domain-dkim:write
       summary: Verify domain address via DKIM
       tags:
       - Notifications
   /sod-policies:
     get:
       description: |-
-        This gets list of all SOD Policies.
+        This gets list of all SOD policies.
         Requires role of ORG_ADMIN
       operationId: listSodPolicies
       parameters:
@@ -36236,7 +37591,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/SodPolicy'
                 type: array
-          description: List of all SOD Policies.
+          description: List of all SOD policies.
         "400":
           content:
             application/json:
@@ -36293,13 +37648,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: List SOD Policies
+      summary: List SOD policies
       tags:
       - SOD Policy
     post:
       description: |-
-        This creates both General and Conflicting Access Based policy, with a limit of 50 entitlements for each (left & right) criteria for Conflicting Access Based SOD policy
-        Requires role of ORG_ADMIN
+        This creates both General and Conflicting Access Based policy, with a limit of 50 entitlements for each (left & right) criteria for Conflicting Access Based SOD policy.
+        Requires role of ORG_ADMIN.
       operationId: createSodPolicy
       requestBody:
         content:
@@ -36500,7 +37855,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Create SOD Policy
+      summary: Create SOD policy
       tags:
       - SOD Policy
   /sod-policies/{id}:
@@ -36517,7 +37872,8 @@ paths:
         required: true
         schema:
           type: string
-      - description: whether this is soft delete i.e. logical true or hard delete
+      - description: Indicates whether this is a soft delete (logical true) or a hard
+          delete.
         in: query
         name: logical
         required: false
@@ -36601,7 +37957,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Delete SOD Policy by ID
+      summary: Delete SOD policy by ID
       tags:
       - SOD Policy
     get:
@@ -36768,16 +38124,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Get SOD Policy By ID
+      summary: Get SOD policy by ID
       tags:
       - SOD Policy
     patch:
-      description: |-
-        Allows updating SOD Policy fields other than ["id","created","creatorId","policyQuery","type"] using the [JSON Patch](https://tools.ietf.org/html/rfc6902) standard.
-        Requires role of ORG_ADMIN.
+      description: "Allows updating SOD Policy fields other than [\"id\",\"created\"\
+        ,\"creatorId\",\"policyQuery\",\"type\"] using the [JSON Patch](https://tools.ietf.org/html/rfc6902)\
+        \ standard.\nRequires role of ORG_ADMIN.\nThis endpoint can only patch CONFLICTING_ACCESS_BASED\
+        \ type policies. Do not use this endpoint to patch general policies - doing\
+        \ so will build an API exception. "
       operationId: patchSodPolicy
       parameters:
-      - description: The ID of the SOD Policy being modified.
+      - description: The ID of the SOD policy being modified.
         example: 2c9180835d191a86015d28455b4a2329
         in: path
         name: id
@@ -36978,7 +38336,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Update a SOD Policy
+      summary: Patch a SOD policy
       tags:
       - SOD Policy
     put:
@@ -37144,7 +38502,7 @@ paths:
                     modified: 2020-05-12T19:47:38Z
               schema:
                 $ref: '#/components/schemas/SodPolicy'
-          description: SOD Policy by ID.
+          description: SOD Policy by ID
         "400":
           content:
             application/json:
@@ -37219,7 +38577,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Update SOD Policy By ID
+      summary: Update SOD policy by ID
       tags:
       - SOD Policy
   /sod-policies/{id}/schedule:
@@ -37229,7 +38587,7 @@ paths:
         Requires role of ORG_ADMIN.
       operationId: deleteSodPolicySchedule
       parameters:
-      - description: The ID of the SOD Policy for which the schedule needs to be deleted.
+      - description: The ID of the SOD policy the schedule must be deleted for.
         example: ef38f94347e94562b5bb8424a56397d8
         in: path
         name: id
@@ -37313,13 +38671,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Delete SOD Policy Schedule
+      summary: Delete SOD policy schedule
       tags:
       - SOD Policy
     get:
       description: |-
-        This gets schedule for a specified SOD policy.
-        Requires a role of ORG_ADMIN
+        This endpoint gets a specified SOD policy's schedule.
+        Requires the role of ORG_ADMIN.
       operationId: getSodPolicySchedule
       parameters:
       - description: The ID of the object reference to retrieve.
@@ -37392,13 +38750,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Get SOD Policy Schedule
+      summary: Get SOD policy schedule
       tags:
       - SOD Policy
     put:
       description: |-
         This updates schedule for a specified SOD policy.
-        Requires role of ORG_ADMIN
+        Requires role of ORG_ADMIN.
       operationId: updatePolicySchedule
       parameters:
       - description: The ID of the SOD policy to update its schedule.
@@ -37420,7 +38778,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SodPolicySchedule'
-          description: SOD Policy by ID.
+          description: SOD policy by ID.
         "400":
           content:
             application/json:
@@ -37483,11 +38841,11 @@ paths:
   /sod-policies/{id}/violation-report/run:
     post:
       description: |-
-        This invokes processing of violation report for given SOD Policy. If policy reports more than 5000 violations, the report returns with violation limit exceeded message.
+        This invokes processing of violation report for given SOD policy. If the policy reports more than 5000 violations, the report returns with violation limit exceeded message.
         Requires role of ORG_ADMIN.
       operationId: runSodPolicy
       parameters:
-      - description: The ID of the SOD Policy to run.
+      - description: The SOD policy ID to run.
         example: ef38f94347e94562b5bb8424a56397d8
         in: path
         name: id
@@ -37580,13 +38938,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Runs SOD Policy Violation Report
+      summary: Runs SOD policy violation report
       tags:
       - SOD Policy
   /sod-policies/{id}/violation-report:
     get:
       description: |-
-        This gets status for a violation report run task invoked already.
+        This gets the status for a violation report run task that has already been invoked.
         Requires role of ORG_ADMIN.
       operationId: getSodViolationReportStatus
       parameters:
@@ -37796,7 +39154,7 @@ paths:
   /sod-violation-report-status/{reportResultId}:
     get:
       description: |-
-        This gets status for a violation report run task invoked already.
+        This gets the status for a violation report run task that has already been invoked.
         Requires role of ORG_ADMIN.
       operationId: getSodViolationReportRunStatus
       parameters:
@@ -37899,7 +39257,7 @@ paths:
   /sod-violation-report/run:
     post:
       description: |-
-        Runs multi policy report for the Org. If a policy reports more than 5000 violation, the report mentions Violation limit exceeded for that policy. If the request is empty, report will run for all policies. Otherwise, report will run only for the filtered policy list provided.
+        Runs multi-policy report for the org. If a policy reports more than 5000 violations, the report mentions that the violation limit was exceeded for that policy. If the request is empty, the report runs for all policies. Otherwise, the report runs for only the filtered policy list provided.
         Requires role of ORG_ADMIN.
       operationId: runSodAllPoliciesForOrg
       requestBody:
@@ -37980,13 +39338,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
           description: Internal Server Error - Returned if there is an unexpected
             error.
-      summary: Runs all policies for Org.
+      summary: Runs all policies for org
       tags:
       - SOD Policy
   /sod-violation-report:
     get:
       description: |-
-        This gets status for a violation report for all policy run.
+        This endpoint gets the status for a violation report for all policy run.
         Requires role of ORG_ADMIN.
       operationId: getSodAllReportRunStatus
       responses:
@@ -38000,7 +39358,7 @@ paths:
                 name: Multi Query Report
               schema:
                 $ref: '#/components/schemas/ReportResultReference'
-          description: Status of the violation report run task for all policy run
+          description: Status of the violation report run task for all policy run.
         "400":
           content:
             application/json:
@@ -38063,7 +39421,7 @@ paths:
   /sod-violation-report/{reportResultId}/download:
     get:
       description: |-
-        This allows to download a violation report for given report reference.
+        This allows to download a violation report for a given report reference.
         Requires role of ORG_ADMIN.
       operationId: downloadDefaultViolationReport
       parameters:
@@ -38081,8 +39439,8 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Returns PolicyReport.zip that contains the violation report
-            file
+          description: Returns the PolicyReport.zip that contains the violation report
+            file.
         "400":
           content:
             application/json:
@@ -38163,7 +39521,7 @@ paths:
   /sod-violation-report/{reportResultId}/download/{fileName}:
     get:
       description: |-
-        This allows to download a specified named violation report  for given report reference.
+        This allows to download a specified named violation report for a given report reference.
         Requires role of ORG_ADMIN.
       operationId: downloadCustomViolationReport
       parameters:
@@ -38188,8 +39546,8 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Returns zip file with given custom name that contains the violation
-            report file
+          description: Returns the zip file with given custom name that contains the
+            violation report file.
         "400":
           content:
             application/json:
@@ -38810,6 +40168,87 @@ paths:
       summary: Complete a Work Item
       tags:
       - Work Items
+  /work-items/{id}/forward:
+    post:
+      description: "This API forwards a work item to a new owner. Either an admin,\
+        \ or the owning/current user must make this request."
+      operationId: forwardWorkItem
+      parameters:
+      - description: The ID of the work item
+        example: ef38f94347e94562b5bb8424a56397d8
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkItemForward'
+        required: true
+      responses:
+        "200":
+          description: "Success, but no data is returned."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Client Error - Returned if the request body is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_401_response'
+          description: "Unauthorized - Returned if there is no authorization header,\
+            \ or if the JWT token is expired."
+        "403":
+          content:
+            application/json:
+              examples:
+                "403":
+                  summary: An example of a 403 response object
+                  value:
+                    detailCode: 403 Forbidden
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: The server understood the request but refuses to authorize
+                        it.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: "Forbidden - Returned if the user you are running as, doesn't\
+            \ have access to this end-point."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAccessProfiles_429_response'
+          description: Too Many Requests - Returned in response to too many requests
+            in a given period of time - rate limited. The Retry-After header in the
+            response includes how long to wait before trying again.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500":
+                  summary: An example of a 500 response object
+                  value:
+                    detailCode: 500.0 Internal Fault
+                    trackingId: b21b1f7ce4da4d639f2c62a57171b427
+                    messages:
+                    - locale: en-US
+                      localeOrigin: DEFAULT
+                      text: An internal fault occurred.
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+          description: Internal Server Error - Returned if there is an unexpected
+            error.
+      summary: Forward a Work Item
+      tags:
+      - Work Items
   /work-items/{id}/approve/{approvalItemId}:
     post:
       description: "This API approves an Approval Item. Either an admin, or the owning/current\
@@ -39369,7 +40808,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:create
+        - sp:workflow:manage
       summary: Create Workflow
       tags:
       - Workflows
@@ -39450,7 +40889,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:delete
+        - sp:workflow:manage
       summary: Delete Workflow By Id
       tags:
       - Workflows
@@ -39666,7 +41105,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:update
+        - sp:workflow:manage
       summary: Patch Workflow
       tags:
       - Workflows
@@ -39755,7 +41194,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:update
+        - sp:workflow:manage
       summary: Update Workflow
       tags:
       - Workflows
@@ -39872,7 +41311,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:execute
+        - sp:workflow-execute:external
       summary: Test Workflow By Id
       tags:
       - Workflows
@@ -40348,7 +41787,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:execute
+        - sp:workflow-execute:external
       summary: Cancel Workflow Execution by ID
       tags:
       - Workflows
@@ -40845,7 +42284,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:update
+        - sp:workflow:manage
       summary: Generate External Trigger OAuth Client
       tags:
       - Workflows
@@ -40937,7 +42376,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:external-execute
+        - sp:workflow-execute:external
       summary: Execute Workflow via External Trigger
       tags:
       - Workflows
@@ -41028,7 +42467,7 @@ paths:
             error.
       security:
       - oauth2:
-        - sp:workflow:external-execute
+        - sp:workflow-execute:external
       summary: Test Workflow via External Trigger
       tags:
       - Workflows
@@ -41827,7 +43266,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/verifyDomainDkim_405_response'
+            $ref: '#/components/schemas/createDomainDkim_405_response'
       description: "Method Not Allowed - indicates that the server knows the request\
         \ method, but the target resource doesn't support this method."
   schemas:
@@ -44743,6 +46182,18 @@ components:
       - access
       - identityId
       type: object
+    SlimAccount:
+      allOf:
+      - $ref: '#/components/schemas/BaseCommonDto'
+      - $ref: '#/components/schemas/SlimAccount_allOf'
+      title: Slim Account
+      type: object
+    FullAccount:
+      allOf:
+      - $ref: '#/components/schemas/SlimAccount'
+      - $ref: '#/components/schemas/FullAccount_allOf'
+      title: Full Account
+      type: object
     AccountAttributes:
       example:
         attributes:
@@ -45587,6 +47038,7 @@ components:
         attributes:
           description: a map of string to objects
           example: {}
+          nullable: true
           type: object
       required:
       - name
@@ -45838,12 +47290,14 @@ components:
           example: Zampa
           type: string
         active:
+          default: true
           description: indicates if an identity is active or not
           example: true
           type: boolean
         deletedDate:
           description: the date when the identity was deleted
           example: 2007-03-01T13:00:00.000Z
+          nullable: true
           type: string
       type: object
     IdentityHistoryResponse:
@@ -46386,6 +47840,10 @@ components:
       - payload
       - status
       type: object
+    Identity:
+      allOf:
+      - $ref: '#/components/schemas/BaseCommonDto'
+      - $ref: '#/components/schemas/IdentityDto'
     IdentityProfileBulkDelete:
       description: List of Identity Profile IDs to delete.
       example:
@@ -46603,6 +48061,7 @@ components:
         enabled: true
       properties:
         enabled:
+          default: true
           description: If the profile or mapping is enabled
           example: true
           type: boolean
@@ -47145,7 +48604,9 @@ components:
       - CCG
       - VA
       - INTERNAL
+      - null
       example: CCG
+      nullable: true
       type: string
     ManagedClientStatusAggResponse:
       description: Managed Client Status
@@ -47382,7 +48843,7 @@ components:
           durationMinutes: 120
           rootLevel: INFO
           clientId: aClientId
-          expiration: 2000-01-23T04:56:07.000+00:00
+          expiration: 2020-12-15T19:13:36.079Z
           logLevels: INFO
         operational: false
         publicKeyCertificate: '-----BEGIN CERTIFICATE-----TCCAb2gAwIBAgIBADANBgkqhkiG9w0BAQsFADAuMQ0wCwYDVQQD-----END
@@ -47478,15 +48939,18 @@ components:
           description: Public key certificate
           example: '-----BEGIN CERTIFICATE-----TCCAb2gAwIBAgIBADANBgkqhkiG9w0BAQsFADAuMQ0wCwYDVQQD-----END
             CERTIFICATE-----'
+          nullable: true
           type: string
         publicKeyThumbprint:
           description: Public key thumbprint
           example: obc6pLiulGbtZ
+          nullable: true
           type: string
         publicKey:
           description: Public key
           example: '-----BEGIN PUBLIC KEY-----jANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3WgnsxP52MDgBTfHR+5n4-----END
             PUBLIC KEY-----'
+          nullable: true
           type: string
         alertKey:
           description: Key describing any immediate cluster alerts
@@ -47523,16 +48987,17 @@ components:
         durationMinutes: 120
         rootLevel: INFO
         clientId: aClientId
-        expiration: 2000-01-23T04:56:07.000+00:00
+        expiration: 2020-12-15T19:13:36.079Z
         logLevels: INFO
+      nullable: true
       properties:
         clientId:
-          description: client ID of the Log configuration
+          description: Log configuration's client ID
           example: aClientId
           type: string
         durationMinutes:
-          description: duration in minutes for the log configuration to remain in
-            effect before resetting to defaults
+          description: Duration in minutes for log configuration to remain in effect
+            before resetting to defaults
           example: 120
           format: int32
           maximum: 1440
@@ -47540,6 +49005,7 @@ components:
           type: integer
         expiration:
           description: Expiration date-time of the log configuration request
+          example: 2020-12-15T19:13:36.079Z
           format: date-time
           type: string
         rootLevel:
@@ -47553,6 +49019,54 @@ components:
       required:
       - durationMinutes
       - rootLevel
+      type: object
+    MailFromAttributesDto:
+      description: MAIL FROM attributes for a domain / identity
+      example:
+        identity: BobSmith@sailpoint.com
+        mailFromDomain: example.sailpoint.com
+      properties:
+        identity:
+          description: The identity or domain address
+          example: BobSmith@sailpoint.com
+          type: string
+        mailFromDomain:
+          description: The new MAIL FROM domain of the identity. Must be a subdomain
+            of the identity.
+          example: example.sailpoint.com
+          type: string
+      type: object
+    MailFromAttributes:
+      description: MAIL FROM attributes for a domain / identity
+      example:
+        id: BobSmith@sailpoint.com
+        mxRecord: 10 feedback-smtp.us-east-1.amazonses.com
+        txtRecord: v=spf1 include:amazonses.com ~all
+        mailFromDomainStatus: PENDING
+      properties:
+        id:
+          description: The identity or domain address
+          example: BobSmith@sailpoint.com
+          type: string
+        mxRecord:
+          description: MX record that is required in customer's DNS to allow the domain
+            to receive bounce and complaint notifications that email providers send
+            you
+          example: 10 feedback-smtp.us-east-1.amazonses.com
+          type: string
+        txtRecord:
+          description: TXT record that is required in customer's DNS in order to prove
+            that Amazon SES is authorized to send email from your domain
+          example: v=spf1 include:amazonses.com ~all
+          type: string
+        mailFromDomainStatus:
+          description: The current status of the MAIL FROM verification
+          enum:
+          - PENDING
+          - SUCCESS
+          - FAILED
+          example: PENDING
+          type: string
       type: object
     MfaConfig:
       example:
@@ -48231,23 +49745,28 @@ components:
         armCustomerId:
           description: ARM Customer ID
           example: DE38E75A-5FF6-4A65-5DC7-08D64426B09E
+          nullable: true
           type: string
         armSapSystemIdMappings:
           description: A list of IDN::sourceId to ARM::systemId mappings.
           example: "[{sourceId=2c91808c791a94e501792388b0d62659, systemId=1556}, {sourceId=2_2c91808c791a94e501792388b0d62659,\
             \ systemId=2_1556}, {sourceId=3_2c91808c791a94e501792388b0d62659, systemId=3_1556}]"
+          nullable: true
           type: string
         armAuth:
           description: ARM authentication string
           example: epiYNTRYA2S7swisDWk1Zv4VMNgvqEjiBh5_ufuCWsma2m-5XADijqBg0ijXLby5nS6lxZNXabhGnAPGeDGc4V3jQKrhwV-UHypRLs8ZLgOjiQNus9NimS0uPdKomRW6TFWqXyfnYd-znNgbbVuwUy9GyD9ebDVJSntPastxSx7UcyGuWBqfNZYpuxKRWe_7TVY60qL55jUqyz8N4XUbbdcxdbZ0uik6ut-Bv90MKTbZexBW_PR4qcgIkaEs4kIenLyBxnGziYo7AO0tJ8bGHO8FJRkibCpAQIt7PISLo7Gg_Xf9j10dKq2YDgy4pPTvz3fE2ZHYnXCXvXFSA-vVag==
+          nullable: true
           type: string
         armDb:
           description: ARM database name
           example: EU
+          nullable: true
           type: string
         armSsoUrl:
           description: ARM SSO URL
           example: https://your-arm-sso-url
+          nullable: true
           type: string
         iaiEnableCertificationRecommendations:
           description: Flag to determine whether IAI Certification Recommendations
@@ -48612,6 +50131,7 @@ components:
           example: Password Sync Group 1
           type: string
         passwordPolicyId:
+          description: ID of the password policy
           example: 2c91808d744ba0ce01746f93b6204501
           type: string
         sourceIds:
@@ -48631,22 +50151,33 @@ components:
         customInstructionsEnabled: true
       properties:
         customInstructionsEnabled:
+          default: false
           description: Indicator whether custom password instructions feature is enabled.
             The default value is false.
+          example: true
           type: boolean
         digitTokenEnabled:
+          default: false
           description: Indicator whether "digit token" feature is enabled. The default
             value is false.
           example: true
           type: boolean
         digitTokenDurationMinutes:
+          default: 5
           description: The duration of "digit token" in minutes. The default value
             is 5.
           example: 10
+          format: int32
+          maximum: 60
+          minimum: 1
           type: integer
         digitTokenLength:
+          default: 6
           description: The length of "digit token". The default value is 6.
           example: 9
+          format: int32
+          maximum: 18
+          minimum: 6
           type: integer
       type: object
     GetPersonalAccessTokenResponse:
@@ -49844,6 +51375,23 @@ components:
       - name
       - owner
       type: object
+    RoleBulkDeleteRequest:
+      example:
+        roleIds:
+        - 2c9180847812e0b1017817051919ecca
+        - 2c9180887812e0b201781e129f151816
+      properties:
+        roleIds:
+          description: List of IDs of Roles to be deleted.
+          example:
+          - 2c9180847812e0b1017817051919ecca
+          - 2c9180887812e0b201781e129f151816
+          items:
+            type: string
+          type: array
+      required:
+      - roleIds
+      type: object
     RoleIdentity:
       description: A subset of the fields of an Identity which is a member of a Role.
       example:
@@ -50250,13 +51798,19 @@ components:
           url: ets://trigger-subscriptions/$id
         exportLimit: 10
         importRight: idn:trigger-service-subscriptions:create
-        exportUrl: ets://trigger-subscriptions/export
+        exportUrl:
+          query: "{}"
+          url: ets://trigger-subscriptions/$id
         signatureRequired: false
         importLimit: 10
         resolveByNameUrl:
+        - query: "{}"
+          url: ets://trigger-subscriptions/$id
+        - query: "{}"
+          url: ets://trigger-subscriptions/$id
+        importUrl:
           query: "{}"
           url: ets://trigger-subscriptions/$id
-        importUrl: ets://trigger-subscriptions/import
         referenceExtractors:
         - $.owner
         objectType: TRIGGER_SUBSCRIPTION
@@ -50269,11 +51823,13 @@ components:
         resolveByIdUrl:
           $ref: '#/components/schemas/SpConfigUrl'
         resolveByNameUrl:
-          $ref: '#/components/schemas/SpConfigUrl'
+          description: Url and query parameters to be used to resolve this type of
+            object by name.
+          items:
+            $ref: '#/components/schemas/SpConfigUrl'
+          type: array
         exportUrl:
-          description: Url to export this type of object.
-          example: ets://trigger-subscriptions/export
-          type: string
+          $ref: '#/components/schemas/SpConfigUrl'
         exportRight:
           description: Rights needed by the invoker of sp-config/export in order to
             export this type of object.
@@ -50286,9 +51842,7 @@ components:
           format: int32
           type: integer
         importUrl:
-          description: Url to import this type of object.
-          example: ets://trigger-subscriptions/import
-          type: string
+          $ref: '#/components/schemas/SpConfigUrl'
         importRight:
           description: Rights needed by the invoker of sp-config/import in order to
             import this type of object.
@@ -50310,6 +51864,7 @@ components:
           nullable: true
           type: array
         signatureRequired:
+          default: false
           description: "If true, this type of object will be JWS signed and cannot\
             \ be modified before import."
           example: false
@@ -50459,7 +52014,8 @@ components:
           type: array
         type:
           description: "Specifies the type of system being managed e.g. Active Directory,\
-            \ Workday, etc.."
+            \ Workday, etc.. If you are creating a Delimited File source, you must\
+            \ set the `provisionasCsv` query parameter to `true`. "
           example: OpenLDAP - Direct
           type: string
         connector:
@@ -51105,14 +52661,15 @@ components:
           readOnly: true
           type: string
         attributes:
-          additionalProperties: true
           description: Meta-data about the transform. Values in this list are specific
             to the type of transform to be executed.
           example:
             inputFormat: "MMM dd yyyy, HH:mm:ss.SSS"
             outputFormat: yyyy/dd/MM
+          nullable: true
           type: object
         internal:
+          default: false
           description: Indicates whether this is an internal SailPoint-created transform
             or a customer-created transform
           example: false
@@ -51636,8 +53193,8 @@ components:
           - FAILED
           type: string
       type: object
-    DkimAttributesDto:
-      description: DKIM attributes for a domain / identity
+    DkimAttributes:
+      description: DKIM attributes for a domain or identity
       example:
         address: BobSmith@sailpoint.com
         dkimEnabled: true
@@ -51645,13 +53202,19 @@ components:
         - uq1m3jjk25ckd3whl4n7y46c56r5l6aq
         - u7pm38jky9ckdawhlsn7y4dcj6f5lpgq
         - uhpm3jjkjjckdkwhlqn7yw6cjer5tpay
+        id: 123b45b0-aaaa-bbbb-a7db-123456a56abc
         dkimVerificationStatus: Success
       properties:
+        id:
+          description: UUID associated with domain to be verified
+          example: 123b45b0-aaaa-bbbb-a7db-123456a56abc
+          type: string
         address:
           description: The identity or domain address
           example: BobSmith@sailpoint.com
           type: string
         dkimEnabled:
+          default: false
           description: Whether or not DKIM has been enabled for this domain / identity
           example: true
           type: boolean
@@ -51670,13 +53233,53 @@ components:
           example: Success
           type: string
       type: object
-    DomainAddressDto:
+    DomainAddress:
       example:
         domain: sailpoint.com
       properties:
         domain:
           description: A domain address
           example: sailpoint.com
+          type: string
+      type: object
+    DomainStatusDto:
+      description: Domain status DTO containing everything required to verify via
+        DKIM
+      example:
+        domain: sailpoint.com
+        dkimEnabled: true
+        dkimTokens:
+        - token1
+        - token2
+        - token3
+        id: 123b45b0-aaaa-bbbb-a7db-123456a56abc
+        dkimVerificationStatus: PENDING
+      properties:
+        id:
+          description: New UUID associated with domain to be verified
+          example: 123b45b0-aaaa-bbbb-a7db-123456a56abc
+          type: string
+        domain:
+          description: A domain address
+          example: sailpoint.com
+          type: string
+        dkimEnabled:
+          default: false
+          description: DKIM is enabled for this domain
+          example: true
+          type: object
+        dkimTokens:
+          description: DKIM tokens required for authentication
+          example:
+          - token1
+          - token2
+          - token3
+          items:
+            type: string
+          type: array
+        dkimVerificationStatus:
+          description: Status of DKIM authentication
+          example: PENDING
           type: string
       type: object
     SodPolicy:
@@ -51974,6 +53577,29 @@ components:
             type: string
           type: array
       type: object
+    WorkItemForward:
+      example:
+        targetOwnerId: 2c9180835d2e5168015d32f890ca1581
+        comment: I'm going on vacation.
+        sendNotifications: true
+      properties:
+        targetOwnerId:
+          description: The ID of the identity to forward this work item to.
+          example: 2c9180835d2e5168015d32f890ca1581
+          type: string
+        comment:
+          description: Comments to send to the target owner
+          example: I'm going on vacation.
+          type: string
+        sendNotifications:
+          default: true
+          description: "If true, send a notification to the target owner."
+          example: true
+          type: boolean
+      required:
+      - comment
+      - targetOwnerId
+      type: object
     Workflow:
       allOf:
       - $ref: '#/components/schemas/Workflow_allOf'
@@ -51998,7 +53624,7 @@ components:
                 subject: test
               nextStep: success
               selectResult: null
-              type: action
+              type: ACTION
             success:
               type: success
         trigger:
@@ -52206,6 +53832,7 @@ components:
           label: Campaign Name
           type: text
           required: false
+        type: ACTION
         isDynamicSchema: false
       properties:
         id:
@@ -52215,6 +53842,10 @@ components:
         name:
           description: Action Name
           example: Create Certification Campaign
+          type: string
+        type:
+          description: Action type
+          example: ACTION
           type: string
         description:
           description: Action Description
@@ -52408,12 +54039,14 @@ components:
           externalDocs:
             description: List of triggers and their input schemas
             url: https://developer.sailpoint.com/idn/docs/event-triggers/available
+          nullable: true
           type: object
         formFields:
           description: One or more inputs that the trigger accepts
           example: []
           items:
             $ref: '#/components/schemas/WorkflowLibraryFormFields'
+          nullable: true
           type: array
       title: Workflow Trigger
       type: object
@@ -52452,6 +54085,7 @@ components:
           name: variableB
           required: false
           type: text
+        type: OPERATOR
       properties:
         id:
           description: Operator ID.
@@ -52460,6 +54094,10 @@ components:
         name:
           description: Operator friendly name
           example: Compare Boolean Values
+          type: string
+        type:
+          description: Operator type
+          example: OPERATOR
           type: string
         description:
           description: Description of the operator
@@ -52572,11 +54210,13 @@ components:
           type: string
         created:
           description: Creation date of the Object
+          example: 2023-01-03T21:16:22.432Z
           format: date-time
           readOnly: true
           type: string
         modified:
           description: Last modification date of the Object
+          example: 2023-01-03T21:16:22.432Z
           format: date-time
           readOnly: true
           type: string
@@ -52584,6 +54224,7 @@ components:
       - name
       type: object
     IdentityExceptionReportReference:
+      nullable: true
       properties:
         taskResultId:
           description: The id of the task result
@@ -54658,6 +56299,7 @@ components:
         name: firstName
         description: the first name of the identity
         type: String
+      nullable: true
       properties:
         name:
           description: the name of the argument
@@ -54670,6 +56312,7 @@ components:
         type:
           description: the programmatic type of the argument
           example: String
+          nullable: true
           type: string
       required:
       - name
@@ -55145,14 +56788,17 @@ components:
         publicKey:
           description: ManagedCluster publicKey
           example: '-----BEGIN PUBLIC KEY-----******-----END PUBLIC KEY-----'
+          nullable: true
           type: string
         publicKeyThumbprint:
           description: ManagedCluster publicKeyThumbprint
           example: 6CMlaJIV44-xJxcB3CJBjDUUn54
+          nullable: true
           type: string
         publicKeyCertificate:
           description: ManagedCluster publicKeyCertificate
           example: '-----BEGIN CERTIFICATE-----****-----END CERTIFICATE-----'
+          nullable: true
           type: string
       type: object
     ManagedClusterAttributes:
@@ -55169,6 +56815,7 @@ components:
         keystore:
           description: ManagedCluster keystore for spConnectCluster type
           example: /u3+7QAAAAIAAAABAAAAAQAvL3Byb3h5LWNsdXN0ZXIvMmM5MTgwODc3Yjg3MW
+          nullable: true
           type: string
       type: object
     ManagedClusterRedis:
@@ -55740,6 +57387,18 @@ components:
           type: array
         planInitializerScript:
           $ref: '#/components/schemas/ProvisioningConfig_planInitializerScript'
+        noProvisioningRequests:
+          description: Name of an attribute that when true disables the saving of
+            ProvisioningRequest objects whenever plans are sent through this integration.
+          example: true
+          type: boolean
+        provisioningRequestExpiration:
+          description: "When saving pending requests is enabled, this defines the\
+            \ number of hours the request is allowed to live before it is considered\
+            \ expired and no longer affects plan compilation."
+          example: 7
+          format: int32
+          type: integer
       type: object
     ExportOptions:
       example:
@@ -56174,6 +57833,9 @@ components:
       enum:
       - HTTP
       - EVENTBRIDGE
+      - INLINE
+      - SCRIPT
+      - WORKFLOW
       example: HTTP
       type: string
     HttpConfig:
@@ -56395,7 +58057,7 @@ components:
               subject: test
             nextStep: success
             selectResult: null
-            type: action
+            type: ACTION
           success:
             type: success
       properties:
@@ -56417,7 +58079,7 @@ components:
                 subject: test
               nextStep: success
               selectResult: null
-              type: action
+              type: ACTION
             success:
               type: success
           type: object
@@ -56485,13 +58147,14 @@ components:
           - identityPicker
           - governanceGroupPicker
           - string
-          - number
           - object
           - array
           - secret
-          - url
           - keyValuePairs
+          - emailPicker
+          - advancedToggle
           example: text
+          nullable: true
           type: object
       type: object
     CertificationDto:
@@ -57105,6 +58768,7 @@ components:
         refresh process.
       properties:
         enabled:
+          default: false
           description: The backend will only promote values if the profile/mapping
             is enabled.
           example: true
@@ -57140,13 +58804,13 @@ components:
           example: accountAttribute
           type: string
         attributes:
-          additionalProperties:
-            type: object
+          additionalProperties: true
           description: Arbitrary key-value pairs to store any metadata for the object
           example:
             attributeName: e-mail
             sourceName: MySource
             sourceId: 2c9180877a826e68017a8c0b03da1a53
+          nullable: true
           type: object
       type: object
     NonEmployeeSourceLiteWithSchemaAttributes:
@@ -57373,6 +59037,7 @@ components:
       example:
         password: password
         userName: user@example.com
+      nullable: true
       properties:
         userName:
           description: The username to authenticate.
@@ -57390,6 +59055,7 @@ components:
         \ this field is set to null as to not return secrets."
       example:
         bearerToken: bearerToken
+      nullable: true
       properties:
         bearerToken:
           description: Bearer token
@@ -58010,6 +59676,10 @@ components:
           example: ' Rate Limit Exceeded '
           type: object
       type: object
+    listAccounts_200_response_inner:
+      oneOf:
+      - $ref: '#/components/schemas/SlimAccount'
+      - $ref: '#/components/schemas/FullAccount'
     getActiveCampaigns_200_response_inner:
       oneOf:
       - $ref: '#/components/schemas/slimcampaign'
@@ -58040,10 +59710,10 @@ components:
       required:
       - ids
       type: object
-    uploadNonEmployeeRecordsInBulk_request:
+    importNonEmployeeRecordsInBulk_request:
       properties:
         data:
-          format: base64
+          format: binary
           type: string
       required:
       - data
@@ -58068,7 +59738,8 @@ components:
     importSpConfig_request:
       properties:
         data:
-          description: Name of JSON file containing the objects to be imported.
+          description: JSON file containing the objects to be imported.
+          format: binary
           type: string
         options:
           $ref: '#/components/schemas/ImportOptions'
@@ -58096,7 +59767,7 @@ components:
           type: string
           example: null
       type: object
-    verifyDomainDkim_405_response:
+    createDomainDkim_405_response:
       properties:
         errorName:
           description: A message describing the error
@@ -58456,6 +60127,7 @@ components:
         description:
           description: The description of the Identity Profile.
           example: My custom flat file profile
+          nullable: true
           type: string
         owner:
           $ref: '#/components/schemas/IdentityProfile_allOf_owner'
@@ -58467,6 +60139,7 @@ components:
         authoritativeSource:
           $ref: '#/components/schemas/IdentityProfile_allOf_authoritativeSource'
         identityRefreshRequired:
+          default: false
           description: True if a identity refresh is needed. Typically triggered when
             a change on the source has been made
           example: true
@@ -58481,6 +60154,7 @@ components:
         identityExceptionReportReference:
           $ref: '#/components/schemas/IdentityExceptionReportReference'
         hasTimeBasedAttr:
+          default: true
           description: Indicates the value of requiresPeriodicRefresh attribute for
             the Identity Profile.
           example: true
@@ -59839,36 +61513,159 @@ components:
           example: This item grants an employee read and write access to the database
           type: string
       type: object
+    SlimAccount_allOf:
+      properties:
+        uuid:
+          description: Unique ID from the owning source
+          format: uuid
+          nullable: true
+          type: string
+        nativeIdentity:
+          description: The native identifier of the account
+          example: brandin.gray
+          type: string
+        description:
+          description: The description for the account
+          example: Brandin Gray the CEO of Silly Inc.
+          nullable: true
+          type: string
+        disabled:
+          description: Whether the account is disabled
+          example: false
+          type: boolean
+        locked:
+          description: Whether the account is locked
+          example: false
+          type: boolean
+        manuallyCorrelated:
+          description: Whether the account was manually correlated
+          example: false
+          type: boolean
+        hasEntitlements:
+          description: Whether the account has any entitlements associated with it
+          example: true
+          type: boolean
+        sourceId:
+          description: The ID of the source for which this account belongs
+          example: 2c9180835d2e5168015d32f890ca1581
+          type: string
+        sourceName:
+          description: The name of the source
+          example: Large Source
+          type: string
+        identityId:
+          description: The ID of the identity for which this account is correlated
+            to if not uncorrelated
+          example: 4b9163835d2e5168015d32f890ca5936
+          type: string
+        attributes:
+          additionalProperties: true
+          description: A map containing attributes associated with the account
+          example:
+            firstName: SailPoint
+            lastName: Support
+            displayName: SailPoint Support
+          type: object
+      type: object
+      example: null
+    FullAccount_allOf:
+      properties:
+        authoritative:
+          description: Whether this account belongs to an authoritative source
+          example: false
+          type: boolean
+        systemAccount:
+          description: Whether this account is for the IdentityNow source
+          example: false
+          type: boolean
+        uncorrelated:
+          description: True if this account is not correlated to an identity
+          example: false
+          type: boolean
+        features:
+          description: A string list containing the owning source's features
+          example: ENABLE
+          type: string
+      type: object
+      example: null
     Account_allOf:
       properties:
         sourceId:
+          description: The unique ID of the source this account belongs to
           example: 2c9180835d2e5168015d32f890ca1581
           type: string
+        sourceName:
+          description: The display name of the source this account belongs to
+          example: Employees
+          type: string
         identityId:
+          description: The unique ID of the identity this account is correlated to
           example: 2c9180835d2e5168015d32f890ca1581
           type: string
         attributes:
+          additionalProperties: true
+          description: The account attributes that are aggregated
+          example:
+            firstName: SailPoint
+            lastName: Support
+            displayName: SailPoint Support
           type: object
         authoritative:
+          description: Indicates if this account is from an authoritative source
+          example: false
           type: boolean
         description:
+          description: A description of the account
+          nullable: true
           type: string
+          example: null
         disabled:
+          description: Indicates if the account is currently disabled
+          example: false
           type: boolean
         locked:
+          description: Indicates if the account is currently locked
+          example: false
           type: boolean
         nativeIdentity:
+          description: The unique ID of the account generated by the source system
+          example: "552775"
           type: string
         systemAccount:
+          description: "If true, this is a user account within IdentityNow.  If false,\
+            \ this is an account from a source system."
+          example: false
           type: boolean
         uncorrelated:
+          description: Indicates if this account is not correlated to an identity
+          example: false
           type: boolean
         uuid:
+          description: The unique ID of the account as determined by the account schema
+          example: slpt.support
+          nullable: true
           type: string
         manuallyCorrelated:
+          description: Indicates if the account has been manually correlated to an
+            identity
+          example: false
           type: boolean
         hasEntitlements:
+          description: Indicates if the account has entitlements
+          example: true
           type: boolean
+      required:
+      - attributes
+      - authoritative
+      - disabled
+      - hasEntitlements
+      - locked
+      - manuallyCorrelated
+      - nativeIdentity
+      - sourceId
+      - sourceName
+      - systemAccount
+      - uncorrelated
       type: object
       example: null
     AdminReviewReassign_reassignTo:
@@ -60042,6 +61839,7 @@ components:
       - values
       type: object
     ConnectorRuleResponse_allOf:
+      nullable: true
       properties:
         id:
           description: the ID of the rule
@@ -60054,6 +61852,7 @@ components:
         modified:
           description: an ISO 8601 UTC timestamp when this rule was last modified
           example: 021-07-22T15:59:23Z
+          nullable: true
           type: string
       required:
       - created
@@ -60175,6 +61974,60 @@ components:
           - locked
           type: string
       type: object
+    IdentityDto:
+      properties:
+        alias:
+          description: Alternate unique identifier for the identity
+          example: walter.white
+          type: string
+        emailAddress:
+          description: The email address of the identity
+          example: sender@example.com
+          type: string
+        processingState:
+          description: The processing state of the identity
+          enum:
+          - ERROR
+          - OK
+          example: ERROR
+          nullable: true
+          type: string
+        identityStatus:
+          description: The identity's status in the system
+          enum:
+          - UNREGISTERED
+          - REGISTERED
+          - PENDING
+          - WARNING
+          - DISABLED
+          - ACTIVE
+          - DEACTIVATED
+          - TERMINATED
+          - ERROR
+          - LOCKED
+          example: LOCKED
+          type: string
+        managerRef:
+          $ref: '#/components/schemas/BaseReferenceDto'
+        isManager:
+          description: Whether this identity is a manager of another identity
+          example: true
+          type: boolean
+        lastRefresh:
+          description: The last time the identity was refreshed by the system
+          example: 2020-11-22T15:42:31.123Z
+          format: date-time
+          type: string
+        attributes:
+          description: A map with the identity attributes for the identity
+          example: "{\"uid\":\"Walter White\",\"firstname\":\"walter\",\"cloudStatus\"\
+            :\"UNREGISTERED\",\"displayName\":\"Walter White\",\"identificationNumber\"\
+            :\"942\",\"lastSyncDate\":1470348809380,\"email\":\"walter@gmail.com\"\
+            ,\"lastname\":\"white\"}"
+          type: object
+      title: IdentityDto
+      type: object
+      example: null
     NonEmployeeRequest_allOf:
       properties:
         accountName:
@@ -60329,64 +62182,6 @@ components:
           $ref: '#/components/schemas/RoleMiningPotentialRoleExportState'
       type: object
       example: null
-    ServiceDeskIntegrationDto_allOf_ownerRef:
-      description: Reference to the identity that is the owner of this Service Desk
-        integration
-      properties:
-        type:
-          description: The type of object being referenced
-          enum:
-          - IDENTITY
-          example: IDENTITY
-          type: string
-        id:
-          description: ID of the identity
-          example: 2c91808568c529c60168cca6f90c1313
-          type: string
-        name:
-          description: Human-readable display name of the identity
-          example: MyName
-          type: string
-      type: object
-      example: null
-    ServiceDeskIntegrationDto_allOf_clusterRef:
-      description: Reference to the source cluster for this Service Desk integration
-      properties:
-        type:
-          description: The type of object being referenced
-          enum:
-          - CLUSTER
-          example: CLUSTER
-          type: string
-        id:
-          description: ID of the cluster
-          example: 2c9180866166b5b0016167c32ef31a66
-          type: string
-        name:
-          description: Human-readable display name of the cluster
-          example: Corporate Cluster
-          type: string
-      type: object
-      example: null
-    ServiceDeskIntegrationDto_allOf_beforeProvisioningRule:
-      description: Reference to beforeProvisioningRule for this Service Desk integration
-      properties:
-        type:
-          description: The type of object being referenced
-          enum:
-          - RULE
-          example: RULE
-          type: string
-        id:
-          description: ID of the rule
-          example: 2c91808568c529c60168cca6f90c1333
-          type: string
-        name:
-          description: Human-readable display name of the rule
-          example: Example Rule
-          type: string
-      type: object
-      example: null
     ServiceDeskIntegrationDto_allOf:
       description: Specification of a Service Desk integration
       properties:
@@ -60404,9 +62199,44 @@ components:
           example: ServiceNowSDIM
           type: string
         ownerRef:
-          $ref: '#/components/schemas/ServiceDeskIntegrationDto_allOf_ownerRef'
+          allOf:
+          - $ref: '#/components/schemas/BaseReferenceDto'
+          description: Reference to the identity that is the owner of this Service
+            Desk integration
+          properties:
+            type:
+              description: The type of object being referenced
+              enum:
+              - IDENTITY
+              example: IDENTITY
+              type: object
+            id:
+              description: ID of the identity
+              example: 2c91808568c529c60168cca6f90c1313
+              type: object
+            name:
+              description: Human-readable display name of the identity
+              example: MyName
+              type: object
         clusterRef:
-          $ref: '#/components/schemas/ServiceDeskIntegrationDto_allOf_clusterRef'
+          allOf:
+          - $ref: '#/components/schemas/BaseReferenceDto'
+          description: Reference to the source cluster for this Service Desk integration
+          properties:
+            type:
+              description: The type of object being referenced
+              enum:
+              - CLUSTER
+              example: CLUSTER
+              type: object
+            id:
+              description: ID of the cluster
+              example: 2c9180866166b5b0016167c32ef31a66
+              type: object
+            name:
+              description: Human-readable display name of the cluster
+              example: Corporate Cluster
+              type: object
         cluster:
           deprecated: true
           description: "ID of the cluster for the Service Desk integration (replaced\
@@ -60434,7 +62264,24 @@ components:
             key: value
           type: object
         beforeProvisioningRule:
-          $ref: '#/components/schemas/ServiceDeskIntegrationDto_allOf_beforeProvisioningRule'
+          allOf:
+          - $ref: '#/components/schemas/BaseReferenceDto'
+          description: Reference to beforeProvisioningRule for this Service Desk integration
+          properties:
+            type:
+              description: The type of object being referenced
+              enum:
+              - RULE
+              example: RULE
+              type: object
+            id:
+              description: ID of the rule
+              example: 2c91808568c529c60168cca6f90c1333
+              type: object
+            name:
+              description: Human-readable display name of the rule
+              example: Example Rule
+              type: object
       required:
       - attributes
       - description
@@ -60846,6 +62693,7 @@ components:
         authoritativeSource:
           $ref: '#/components/schemas/IdentityProfile_1_allOf_authoritativeSource'
         identityRefreshRequired:
+          default: false
           description: True if a identity refresh is needed. Typically triggered when
             a change on the source has been made.
           example: true
@@ -60860,6 +62708,7 @@ components:
         identityExceptionReportReference:
           $ref: '#/components/schemas/IdentityExceptionReportReference_1'
         hasTimeBasedAttr:
+          default: false
           description: Indicates the value of requiresPeriodicRefresh attribute for
             the Identity Profile.
           example: true
@@ -60935,22 +62784,23 @@ components:
       type: object
       example: null
     ProvisioningConfig_managedResourceRefs_inner:
+      allOf:
+      - $ref: '#/components/schemas/BaseReferenceDto'
       properties:
         type:
           description: The type of object being referenced
           enum:
           - SOURCE
           example: SOURCE
-          type: string
+          type: object
         id:
           description: ID of the source
           example: 2c91808568c529c60168cca6f90c1313
-          type: string
+          type: object
         name:
           description: Human-readable display name of the source
           example: My Source
-          type: string
-      type: object
+          type: object
     ProvisioningConfig_planInitializerScript:
       description: This is a reference to a plan initializer script.
       properties:

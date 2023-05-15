@@ -4,8 +4,8 @@ All URIs are relative to *https://sailpoint.api.identitynow.com/beta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetManagedClientStatus**](ManagedClientsApi.md#GetManagedClientStatus) | **Get** /managed-clients/{id}/status | Get a specified Managed Client Status.
-[**UpdateManagedClientStatus**](ManagedClientsApi.md#UpdateManagedClientStatus) | **Post** /managed-clients/{id}/status | Handle a status request from a client
+[**GetManagedClientStatus**](ManagedClientsApi.md#GetManagedClientStatus) | **Get** /managed-clients/{id}/status | Specified Managed Client Status.
+[**UpdateManagedClientStatus**](ManagedClientsApi.md#UpdateManagedClientStatus) | **Post** /managed-clients/{id}/status | Handle status request from client
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > ManagedClientStatus GetManagedClientStatus(ctx, id).Type_(type_).Execute()
 
-Get a specified Managed Client Status.
+Specified Managed Client Status.
 
 
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 > ManagedClientStatusAggResponse UpdateManagedClientStatus(ctx, id).ManagedClientStatus(managedClientStatus).Execute()
 
-Handle a status request from a client
+Handle status request from client
 
 
 
@@ -104,7 +104,7 @@ import (
 
 func main() {
     id := "aClientId" // string | ID of the Managed Client Status to update
-    managedClientStatus := *openapiclient.NewManagedClientStatus(map[string]interface{}({alertKey=, id=5678, clusterId=1234, ccg_etag=ccg_etag123xyz456, ccg_pin=NONE, cookbook_etag=20210420125956-20210511144538, hostname=megapod-useast1-secret-hostname.sailpoint.com, internal_ip=127.0.0.1, lastSeen=1620843964604, sinceSeen=14708, sinceSeenMillis=14708, localDev=false, stacktrace=, state=null, status=NORMAL, uuid=null, product=idn, va_version=null, platform_version=2, os_version=2345.3.1, os_type=flatcar, hypervisor=unknown}), openapiclient.ManagedClientStatusEnum("NORMAL"), openapiclient.ManagedClientType("CCG"), time.Now()) // ManagedClientStatus | 
+    managedClientStatus := *openapiclient.NewManagedClientStatus(map[string]interface{}({alertKey=, id=5678, clusterId=1234, ccg_etag=ccg_etag123xyz456, ccg_pin=NONE, cookbook_etag=20210420125956-20210511144538, hostname=megapod-useast1-secret-hostname.sailpoint.com, internal_ip=127.0.0.1, lastSeen=1620843964604, sinceSeen=14708, sinceSeenMillis=14708, localDev=false, stacktrace=, state=null, status=NORMAL, uuid=null, product=idn, va_version=null, platform_version=2, os_version=2345.3.1, os_type=flatcar, hypervisor=unknown}), openapiclient.ManagedClientStatusEnum("NORMAL"), "TODO", time.Now()) // ManagedClientStatus | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

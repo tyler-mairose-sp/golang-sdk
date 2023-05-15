@@ -51,13 +51,13 @@ func Test_beta_IdentityHistoryApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test IdentityHistoryApiService GetHistoricalIdentityEvents", func(t *testing.T) {
+	t.Run("Test IdentityHistoryApiService GetHistoricalIdentity", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.IdentityHistoryApi.GetHistoricalIdentityEvents(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.IdentityHistoryApi.GetHistoricalIdentity(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,13 +65,13 @@ func Test_beta_IdentityHistoryApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test IdentityHistoryApiService GetIdentity", func(t *testing.T) {
+	t.Run("Test IdentityHistoryApiService GetHistoricalIdentityEvents", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.IdentityHistoryApi.GetIdentity(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.IdentityHistoryApi.GetHistoricalIdentityEvents(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -122,11 +122,11 @@ func Test_beta_IdentityHistoryApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test IdentityHistoryApiService ListIdentities", func(t *testing.T) {
+	t.Run("Test IdentityHistoryApiService ListHistoricalIdentities", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.IdentityHistoryApi.ListIdentities(context.Background()).Execute()
+		resp, httpRes, err := apiClient.IdentityHistoryApi.ListHistoricalIdentities(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

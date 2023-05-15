@@ -5,11 +5,11 @@ All URIs are relative to *https://sailpoint.api.identitynow.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateApplication**](ApplicationsApi.md#CreateApplication) | **Post** /cc/api/app/create | Create Application
-[**DeleteApplication**](ApplicationsApi.md#DeleteApplication) | **Post** /cc/api/app/delete/:id | Delete Application
-[**GetApplication**](ApplicationsApi.md#GetApplication) | **Get** /cc/api/app/get/:id | Get Single Application
-[**GetApplicationAccessProfiles**](ApplicationsApi.md#GetApplicationAccessProfiles) | **Get** /cc/api/app/getAccessProfiles/:id | Get Access Profiles for Application
-[**ListApplications**](ApplicationsApi.md#ListApplications) | **Get** /cc/api/app | List Applications
-[**UpdateApplication**](ApplicationsApi.md#UpdateApplication) | **Post** /cc/api/app/update/:id | Update Application
+[**DeleteApplication**](ApplicationsApi.md#DeleteApplication) | **Post** /cc/api/app/delete/{id} | Delete Application
+[**GetApplication**](ApplicationsApi.md#GetApplication) | **Get** /cc/api/app/get/{id} | Get Single Application
+[**GetApplicationAccessProfiles**](ApplicationsApi.md#GetApplicationAccessProfiles) | **Get** /cc/api/app/getAccessProfiles/{id} | Get Access Profiles for Application
+[**ListApplications**](ApplicationsApi.md#ListApplications) | **Get** /cc/api/app/list | List Applications
+[**UpdateApplication**](ApplicationsApi.md#UpdateApplication) | **Post** /cc/api/app/update/{id} | Update Application
 
 
 
@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-    id := "12345" // string |  (optional)
+    id := "12345" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ## GetApplication
 
-> GetApplication(ctx, id).Execute()
+> ListApplications200ResponseInner GetApplication(ctx, id).Execute()
 
 Get Single Application
 
@@ -160,7 +160,7 @@ import (
 )
 
 func main() {
-    id := "12345" // string |  (optional)
+    id := "12345" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,6 +169,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.GetApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `GetApplication`: ListApplications200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.GetApplication`: %v\n", resp)
 }
 ```
 
@@ -191,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ListApplications200ResponseInner**](ListApplications200ResponseInner.md)
 
 ### Authorization
 
@@ -226,7 +228,7 @@ import (
 )
 
 func main() {
-    id := "12345" // string |  (optional)
+    id := "12345" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -275,7 +277,7 @@ No authorization required
 
 ## ListApplications
 
-> ListApplications(ctx).Execute()
+> []ListApplications200ResponseInner ListApplications(ctx).Execute()
 
 List Applications
 
@@ -300,6 +302,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ListApplications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `ListApplications`: []ListApplications200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ListApplications`: %v\n", resp)
 }
 ```
 
@@ -314,7 +318,7 @@ Other parameters are passed through a pointer to a apiListApplicationsRequest st
 
 ### Return type
 
- (empty response body)
+[**[]ListApplications200ResponseInner**](ListApplications200ResponseInner.md)
 
 ### Authorization
 
@@ -349,7 +353,7 @@ import (
 )
 
 func main() {
-    id := "12345" // string |  (optional)
+    id := "12345" // string | 
     updateApplicationRequest := *openapiclient.NewUpdateApplicationRequest() // UpdateApplicationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()

@@ -4,18 +4,18 @@ All URIs are relative to *https://sailpoint.api.identitynow.com/beta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetClientLogConfiguration**](ManagedClustersApi.md#GetClientLogConfiguration) | **Get** /managed-clusters/{id}/log-config | get ManagedCluster Log Configuration for a specified cluster
+[**GetClientLogConfiguration**](ManagedClustersApi.md#GetClientLogConfiguration) | **Get** /managed-clusters/{id}/log-config | Get managed cluster&#39;s log configuration
 [**GetManagedCluster**](ManagedClustersApi.md#GetManagedCluster) | **Get** /managed-clusters/{id} | Get a specified ManagedCluster.
 [**GetManagedClusters**](ManagedClustersApi.md#GetManagedClusters) | **Get** /managed-clusters | Retrieve all Managed Clusters.
-[**UpdateClientLogConfiguration**](ManagedClustersApi.md#UpdateClientLogConfiguration) | **Put** /managed-clusters/{id}/log-config | Update log configuration for a specified cluster.
+[**PutClientLogConfiguration**](ManagedClustersApi.md#PutClientLogConfiguration) | **Put** /managed-clusters/{id}/log-config | Update managed cluster&#39;s log configuration
 
 
 
 ## GetClientLogConfiguration
 
-> []ClientLogConfiguration GetClientLogConfiguration(ctx, id).Execute()
+> ClientLogConfiguration GetClientLogConfiguration(ctx, id).Execute()
 
-get ManagedCluster Log Configuration for a specified cluster
+Get managed cluster's log configuration
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    id := "aClusterId" // string | ID of the ManagedCluster to get log configuration for
+    id := "aClusterId" // string | ID of ManagedCluster to get log configuration for
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ManagedClustersApi.GetClientLogConfiguration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetClientLogConfiguration`: []ClientLogConfiguration
+    // response from `GetClientLogConfiguration`: ClientLogConfiguration
     fmt.Fprintf(os.Stdout, "Response from `ManagedClustersApi.GetClientLogConfiguration`: %v\n", resp)
 }
 ```
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | ID of the ManagedCluster to get log configuration for | 
+**id** | **string** | ID of ManagedCluster to get log configuration for | 
 
 ### Other Parameters
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ClientLogConfiguration**](ClientLogConfiguration.md)
+[**ClientLogConfiguration**](ClientLogConfiguration.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ func main() {
     offset := int32(0) // int32 | Offset into the full result set. Usually specified with *limit* to paginate through the results. See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. (optional) (default to 0)
     limit := int32(250) // int32 | Max number of results to return. See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. (optional) (default to 250)
     count := true // bool | If *true* it will populate the *X-Total-Count* response header with the number of results that would be returned if *limit* and *offset* were ignored.  Since requesting a total count can have a performance impact, it is recommended not to send **count=true** if that value will not be used.  See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. (optional) (default to false)
-    filters := "filters_example" // string | Filtering is supported for the following fields and operators:  **operational**: *eq* (optional)
+    filters := "operational eq operation" // string | Filtering is supported for the following fields and operators:  **operational**: *eq* (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -223,11 +223,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateClientLogConfiguration
+## PutClientLogConfiguration
 
-> ClientLogConfiguration UpdateClientLogConfiguration(ctx, id).ClientLogConfiguration(clientLogConfiguration).Execute()
+> ClientLogConfiguration PutClientLogConfiguration(ctx, id).ClientLogConfiguration(clientLogConfiguration).Execute()
 
-Update log configuration for a specified cluster.
+Update managed cluster's log configuration
 
 
 
@@ -244,18 +244,18 @@ import (
 )
 
 func main() {
-    id := "aClusterId" // string | ID of the ManagedCluster to update log configuration for
-    clientLogConfiguration := *openapiclient.NewClientLogConfiguration(int32(120), openapiclient.StandardLevel("false")) // ClientLogConfiguration | ClientLogConfiguration for the given ManagedCluster
+    id := "aClusterId" // string | ID of ManagedCluster to update log configuration for
+    clientLogConfiguration := *openapiclient.NewClientLogConfiguration(int32(120), openapiclient.StandardLevel("false")) // ClientLogConfiguration | ClientLogConfiguration for given ManagedCluster
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ManagedClustersApi.UpdateClientLogConfiguration(context.Background(), id).ClientLogConfiguration(clientLogConfiguration).Execute()
+    resp, r, err := apiClient.ManagedClustersApi.PutClientLogConfiguration(context.Background(), id).ClientLogConfiguration(clientLogConfiguration).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ManagedClustersApi.UpdateClientLogConfiguration``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ManagedClustersApi.PutClientLogConfiguration``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateClientLogConfiguration`: ClientLogConfiguration
-    fmt.Fprintf(os.Stdout, "Response from `ManagedClustersApi.UpdateClientLogConfiguration`: %v\n", resp)
+    // response from `PutClientLogConfiguration`: ClientLogConfiguration
+    fmt.Fprintf(os.Stdout, "Response from `ManagedClustersApi.PutClientLogConfiguration`: %v\n", resp)
 }
 ```
 
@@ -265,17 +265,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | ID of the ManagedCluster to update log configuration for | 
+**id** | **string** | ID of ManagedCluster to update log configuration for | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateClientLogConfigurationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPutClientLogConfigurationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **clientLogConfiguration** | [**ClientLogConfiguration**](ClientLogConfiguration.md) | ClientLogConfiguration for the given ManagedCluster | 
+ **clientLogConfiguration** | [**ClientLogConfiguration**](ClientLogConfiguration.md) | ClientLogConfiguration for given ManagedCluster | 
 
 ### Return type
 

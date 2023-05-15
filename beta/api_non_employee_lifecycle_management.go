@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 )
 
 
@@ -707,11 +708,9 @@ func (r ApiCreateNonEmployeeSourceSchemaAttributesRequest) Execute() (*NonEmploy
 }
 
 /*
-CreateNonEmployeeSourceSchemaAttributes Create a new Schema Attribute for Non-Employee Source
+CreateNonEmployeeSourceSchemaAttributes Create Non-Employee Source Schema Attribute
 
 This API creates a new schema attribute for Non-Employee Source. The schema technical name must be unique in the source. Attempts to create a schema attribute with an existing name will result in a "400.1.409 Reference conflict" response. At most, 10 custom attributes can be created per schema. Attempts to create more than 10 will result in a "400.1.4 Limit violation" response.
-Request requires a security scope of:
-'idn:nesr:create'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sourceId The Source id
@@ -874,8 +873,6 @@ func (r ApiDeleteNonEmployeeRecordRequest) Execute() (*http.Response, error) {
 DeleteNonEmployeeRecord Delete Non-Employee Record
 
 This request will delete a non-employee record.
-Request will require the following security scope:
-'idn:nesr:delete'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Non-Employee record id (UUID)
@@ -1177,9 +1174,7 @@ func (r ApiDeleteNonEmployeeRequestRequest) Execute() (*http.Response, error) {
 /*
 DeleteNonEmployeeRequest Delete Non-Employee Request
 
-This request will delete a non-employee request.  
-Request will require the following scope:
-'idn:nesr:delete'
+This request will delete a non-employee request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Non-Employee request id in the UUID format
@@ -1335,13 +1330,9 @@ func (r ApiDeleteNonEmployeeSchemaAttributeRequest) Execute() (*http.Response, e
 }
 
 /*
-DeleteNonEmployeeSchemaAttribute Delete a Schema Attribute for Non-Employee Source
+DeleteNonEmployeeSchemaAttribute Delete Non-Employee Source's Schema Attribute
 
 This end-point deletes a specific schema attribute for a non-employee source.
-
-Request will require a security scope of:
-
-'idn:nesr:delete'
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1492,8 +1483,6 @@ func (r ApiDeleteNonEmployeeSourceRequest) Execute() (*http.Response, error) {
 DeleteNonEmployeeSource Delete Non-Employee Source
 
 This request will delete a non-employee source.
-Request will require the following security scope:
-'idn:nesr:delete'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sourceId Source Id
@@ -1637,11 +1626,9 @@ func (r ApiDeleteNonEmployeeSourceSchemaAttributesRequest) Execute() (*http.Resp
 }
 
 /*
-DeleteNonEmployeeSourceSchemaAttributes Delete all custom schema attributes for Non-Employee Source
+DeleteNonEmployeeSourceSchemaAttributes Delete all custom schema attributes
 
 This end-point deletes all custom schema attributes for a non-employee source.
-Request requires a security scope of:
-'idn:nesr:delete'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sourceId The Source id
@@ -1788,8 +1775,6 @@ func (r ApiExportNonEmployeeRecordsRequest) Execute() (*http.Response, error) {
 ExportNonEmployeeRecords Exports Non-Employee Records to CSV
 
 This requests a CSV download for all non-employees from a provided source.
-Request will need the following security scope:
-'idn:nesr:read'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Source Id (UUID)
@@ -2427,13 +2412,9 @@ func (r ApiGetNonEmployeeBulkUploadStatusRequest) Execute() (*NonEmployeeBulkUpl
 }
 
 /*
-GetNonEmployeeBulkUploadStatus Obtain the status of bulk upload on the source
+GetNonEmployeeBulkUploadStatus Bulk upload status on source
 
 The nonEmployeeBulkUploadStatus API returns the status of the newest bulk upload job for the specified source.
-
-Request will need the following scope:
-
-'idn:nesr:read'
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2592,8 +2573,6 @@ func (r ApiGetNonEmployeeRecordRequest) Execute() (*NonEmployeeRecord, *http.Res
 GetNonEmployeeRecord Get a Non-Employee Record
 
 This gets a non-employee record.
-Request will require the following scope:
-'idn:nesr:read'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Non-Employee record id (UUID)
@@ -3445,6 +3424,202 @@ func (a *NonEmployeeLifecycleManagementApiService) GetNonEmployeeSourceSchemaAtt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseDto
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ListAccessProfiles401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponseDto
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseDto
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ListAccessProfiles429Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponseDto
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiImportNonEmployeeRecordsInBulkRequest struct {
+	ctx context.Context
+	ApiService *NonEmployeeLifecycleManagementApiService
+	id string
+	data *os.File
+}
+
+func (r ApiImportNonEmployeeRecordsInBulkRequest) Data(data *os.File) ApiImportNonEmployeeRecordsInBulkRequest {
+	r.data = data
+	return r
+}
+
+func (r ApiImportNonEmployeeRecordsInBulkRequest) Execute() (*NonEmployeeBulkUploadJob, *http.Response, error) {
+	return r.ApiService.ImportNonEmployeeRecordsInBulkExecute(r)
+}
+
+/*
+ImportNonEmployeeRecordsInBulk Imports, or Updates, Non-Employee Records
+
+This post will import, or update, Non-Employee records found in the CSV.
+Request will need the following security scope:
+'idn:nesr:create'
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Source Id (UUID)
+ @return ApiImportNonEmployeeRecordsInBulkRequest
+*/
+func (a *NonEmployeeLifecycleManagementApiService) ImportNonEmployeeRecordsInBulk(ctx context.Context, id string) ApiImportNonEmployeeRecordsInBulkRequest {
+	return ApiImportNonEmployeeRecordsInBulkRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return NonEmployeeBulkUploadJob
+func (a *NonEmployeeLifecycleManagementApiService) ImportNonEmployeeRecordsInBulkExecute(r ApiImportNonEmployeeRecordsInBulkRequest) (*NonEmployeeBulkUploadJob, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NonEmployeeBulkUploadJob
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NonEmployeeLifecycleManagementApiService.ImportNonEmployeeRecordsInBulk")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/non-employee-sources/{id}/non-employee-bulk-upload"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.data == nil {
+		return localVarReturnValue, nil, reportError("data is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	var dataLocalVarFormFileName string
+	var dataLocalVarFileName     string
+	var dataLocalVarFileBytes    []byte
+
+	dataLocalVarFormFileName = "data"
+
+
+	dataLocalVarFile := r.data
+
+	if dataLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(dataLocalVarFile)
+
+		dataLocalVarFileBytes = fbs
+		dataLocalVarFileName = dataLocalVarFile.Name()
+		dataLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: dataLocalVarFileBytes, fileName: dataLocalVarFileName, formFileName: dataLocalVarFormFileName})
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -4592,13 +4767,9 @@ func (r ApiPatchNonEmployeeSchemaAttributeRequest) Execute() (*NonEmployeeSchema
 }
 
 /*
-PatchNonEmployeeSchemaAttribute Patch a Schema Attribute for Non-Employee Source
+PatchNonEmployeeSchemaAttribute Patch Non-Employee Source's Schema Attribute
 
 This end-point patches a specific schema attribute for a non-employee SourceId.
-
-Request will require a security scope of:
-
-'idn:nesr:update'
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -4783,8 +4954,6 @@ func (r ApiPatchNonEmployeeSourceRequest) Execute() (*NonEmployeeSource, *http.R
 PatchNonEmployeeSource Patch a Non-Employee Source
 
 patch a non-employee source. (Partial Update)  Patchable field: **name, description, approvers, accountManagers**
-Request will require the following security scope:
-'idn:nesr:update'
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sourceId Source Id
@@ -5179,186 +5348,6 @@ func (a *NonEmployeeLifecycleManagementApiService) UpdateNonEmployeeRecordExecut
 	}
 	// body params
 	localVarPostBody = r.nonEmployeeRequestBody
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponseDto
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListAccessProfiles401Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorResponseDto
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorResponseDto
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListAccessProfiles429Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorResponseDto
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUploadNonEmployeeRecordsInBulkRequest struct {
-	ctx context.Context
-	ApiService *NonEmployeeLifecycleManagementApiService
-	id string
-	data *string
-}
-
-func (r ApiUploadNonEmployeeRecordsInBulkRequest) Data(data string) ApiUploadNonEmployeeRecordsInBulkRequest {
-	r.data = &data
-	return r
-}
-
-func (r ApiUploadNonEmployeeRecordsInBulkRequest) Execute() (*NonEmployeeBulkUploadJob, *http.Response, error) {
-	return r.ApiService.UploadNonEmployeeRecordsInBulkExecute(r)
-}
-
-/*
-UploadNonEmployeeRecordsInBulk Imports, or Updates, Non-Employee Records
-
-This post will import, or update, Non-Employee records found in the CSV.
-Request will need the following security scope:
-'idn:nesr:create'
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Source Id (UUID)
- @return ApiUploadNonEmployeeRecordsInBulkRequest
-*/
-func (a *NonEmployeeLifecycleManagementApiService) UploadNonEmployeeRecordsInBulk(ctx context.Context, id string) ApiUploadNonEmployeeRecordsInBulkRequest {
-	return ApiUploadNonEmployeeRecordsInBulkRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return NonEmployeeBulkUploadJob
-func (a *NonEmployeeLifecycleManagementApiService) UploadNonEmployeeRecordsInBulkExecute(r ApiUploadNonEmployeeRecordsInBulkRequest) (*NonEmployeeBulkUploadJob, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NonEmployeeBulkUploadJob
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NonEmployeeLifecycleManagementApiService.UploadNonEmployeeRecordsInBulk")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/non-employee-sources/{id}/non-employee-bulk-upload"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.data == nil {
-		return localVarReturnValue, nil, reportError("data is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	parameterAddToQuery(localVarFormParams, "data", r.data, "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

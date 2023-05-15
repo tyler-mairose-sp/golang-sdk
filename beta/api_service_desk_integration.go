@@ -40,7 +40,7 @@ func (r ApiCreateServiceDeskIntegrationRequest) Execute() (*ServiceDeskIntegrati
 }
 
 /*
-CreateServiceDeskIntegration Create a new Service Desk integration
+CreateServiceDeskIntegration Create new Service Desk integration
 
 Create a new Service Desk Integrations.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
@@ -210,7 +210,7 @@ func (r ApiDeleteServiceDeskIntegrationRequest) Execute() (*http.Response, error
 }
 
 /*
-DeleteServiceDeskIntegration Delete a Service Desk integration by ID
+DeleteServiceDeskIntegration Delete a Service Desk integration
 
 Delete an existing Service Desk integration by ID.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
@@ -367,7 +367,7 @@ func (r ApiGetServiceDeskIntegrationRequest) Execute() (*ServiceDeskIntegrationD
 }
 
 /*
-GetServiceDeskIntegration Get a Service Desk integration by ID
+GetServiceDeskIntegration Get a Service Desk integration
 
 Get an existing Service Desk integration by ID.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
@@ -1080,7 +1080,7 @@ func (r ApiGetStatusCheckDetailsRequest) Execute() (*QueuedCheckConfigDetails, *
 }
 
 /*
-GetStatusCheckDetails Get the time check configuration of queued SDIM tickets
+GetStatusCheckDetails Get the time check configuration
 
 Get the time check configuration of queued SDIM tickets.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
@@ -1252,7 +1252,7 @@ func (r ApiPatchServiceDeskIntegrationRequest) Execute() (*ServiceDeskIntegratio
 }
 
 /*
-PatchServiceDeskIntegration Service Desk Integration Update - PATCH
+PatchServiceDeskIntegration Service Desk Integration Update PATCH
 
 Update an existing ServiceDeskIntegration by ID with a PATCH request.
 
@@ -1414,59 +1414,63 @@ func (a *ServiceDeskIntegrationApiService) PatchServiceDeskIntegrationExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateManagedClientStatusCheckDetailsRequest struct {
+type ApiUpdateServiceDeskIntegrationRequest struct {
 	ctx context.Context
 	ApiService *ServiceDeskIntegrationApiService
-	queuedCheckConfigDetails *QueuedCheckConfigDetails
+	id string
+	serviceDeskIntegrationDto *ServiceDeskIntegrationDto
 }
 
-// the modified time check configuration
-func (r ApiUpdateManagedClientStatusCheckDetailsRequest) QueuedCheckConfigDetails(queuedCheckConfigDetails QueuedCheckConfigDetails) ApiUpdateManagedClientStatusCheckDetailsRequest {
-	r.queuedCheckConfigDetails = &queuedCheckConfigDetails
+// The specifics of the integration to update
+func (r ApiUpdateServiceDeskIntegrationRequest) ServiceDeskIntegrationDto(serviceDeskIntegrationDto ServiceDeskIntegrationDto) ApiUpdateServiceDeskIntegrationRequest {
+	r.serviceDeskIntegrationDto = &serviceDeskIntegrationDto
 	return r
 }
 
-func (r ApiUpdateManagedClientStatusCheckDetailsRequest) Execute() (*QueuedCheckConfigDetails, *http.Response, error) {
-	return r.ApiService.UpdateManagedClientStatusCheckDetailsExecute(r)
+func (r ApiUpdateServiceDeskIntegrationRequest) Execute() (*ServiceDeskIntegrationDto, *http.Response, error) {
+	return r.ApiService.UpdateServiceDeskIntegrationExecute(r)
 }
 
 /*
-UpdateManagedClientStatusCheckDetails Update the time check configuration of queued SDIM tickets
+UpdateServiceDeskIntegration Update a Service Desk integration
 
-Update the time check configuration of queued SDIM tickets.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
+Update an existing Service Desk integration by ID with updated value in JSON form as the request body.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateManagedClientStatusCheckDetailsRequest
+ @param id ID of the Service Desk integration to update
+ @return ApiUpdateServiceDeskIntegrationRequest
 */
-func (a *ServiceDeskIntegrationApiService) UpdateManagedClientStatusCheckDetails(ctx context.Context) ApiUpdateManagedClientStatusCheckDetailsRequest {
-	return ApiUpdateManagedClientStatusCheckDetailsRequest{
+func (a *ServiceDeskIntegrationApiService) UpdateServiceDeskIntegration(ctx context.Context, id string) ApiUpdateServiceDeskIntegrationRequest {
+	return ApiUpdateServiceDeskIntegrationRequest{
 		ApiService: a,
 		ctx: ctx,
+		id: id,
 	}
 }
 
 // Execute executes the request
-//  @return QueuedCheckConfigDetails
-func (a *ServiceDeskIntegrationApiService) UpdateManagedClientStatusCheckDetailsExecute(r ApiUpdateManagedClientStatusCheckDetailsRequest) (*QueuedCheckConfigDetails, *http.Response, error) {
+//  @return ServiceDeskIntegrationDto
+func (a *ServiceDeskIntegrationApiService) UpdateServiceDeskIntegrationExecute(r ApiUpdateServiceDeskIntegrationRequest) (*ServiceDeskIntegrationDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *QueuedCheckConfigDetails
+		localVarReturnValue  *ServiceDeskIntegrationDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceDeskIntegrationApiService.UpdateManagedClientStatusCheckDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceDeskIntegrationApiService.UpdateServiceDeskIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/service-desk-integrations/status-check-configuration"
+	localVarPath := localBasePath + "/service-desk-integrations/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.queuedCheckConfigDetails == nil {
-		return localVarReturnValue, nil, reportError("queuedCheckConfigDetails is required and must be specified")
+	if r.serviceDeskIntegrationDto == nil {
+		return localVarReturnValue, nil, reportError("serviceDeskIntegrationDto is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1487,7 +1491,7 @@ func (a *ServiceDeskIntegrationApiService) UpdateManagedClientStatusCheckDetails
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.queuedCheckConfigDetails
+	localVarPostBody = r.serviceDeskIntegrationDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1590,63 +1594,59 @@ func (a *ServiceDeskIntegrationApiService) UpdateManagedClientStatusCheckDetails
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateServiceDeskIntegrationRequest struct {
+type ApiUpdateStatusCheckDetailsRequest struct {
 	ctx context.Context
 	ApiService *ServiceDeskIntegrationApiService
-	id string
-	serviceDeskIntegrationDto *ServiceDeskIntegrationDto
+	queuedCheckConfigDetails *QueuedCheckConfigDetails
 }
 
-// The specifics of the integration to update
-func (r ApiUpdateServiceDeskIntegrationRequest) ServiceDeskIntegrationDto(serviceDeskIntegrationDto ServiceDeskIntegrationDto) ApiUpdateServiceDeskIntegrationRequest {
-	r.serviceDeskIntegrationDto = &serviceDeskIntegrationDto
+// the modified time check configuration
+func (r ApiUpdateStatusCheckDetailsRequest) QueuedCheckConfigDetails(queuedCheckConfigDetails QueuedCheckConfigDetails) ApiUpdateStatusCheckDetailsRequest {
+	r.queuedCheckConfigDetails = &queuedCheckConfigDetails
 	return r
 }
 
-func (r ApiUpdateServiceDeskIntegrationRequest) Execute() (*ServiceDeskIntegrationDto, *http.Response, error) {
-	return r.ApiService.UpdateServiceDeskIntegrationExecute(r)
+func (r ApiUpdateStatusCheckDetailsRequest) Execute() (*QueuedCheckConfigDetails, *http.Response, error) {
+	return r.ApiService.UpdateStatusCheckDetailsExecute(r)
 }
 
 /*
-UpdateServiceDeskIntegration Update a Service Desk integration by ID
+UpdateStatusCheckDetails Update the time check configuration
 
-Update an existing Service Desk integration by ID with updated value in JSON form as the request body.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
+Update the time check configuration of queued SDIM tickets.  A token with Org Admin or Service Desk Admin authority is required to access this endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id ID of the Service Desk integration to update
- @return ApiUpdateServiceDeskIntegrationRequest
+ @return ApiUpdateStatusCheckDetailsRequest
 */
-func (a *ServiceDeskIntegrationApiService) UpdateServiceDeskIntegration(ctx context.Context, id string) ApiUpdateServiceDeskIntegrationRequest {
-	return ApiUpdateServiceDeskIntegrationRequest{
+func (a *ServiceDeskIntegrationApiService) UpdateStatusCheckDetails(ctx context.Context) ApiUpdateStatusCheckDetailsRequest {
+	return ApiUpdateStatusCheckDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
 // Execute executes the request
-//  @return ServiceDeskIntegrationDto
-func (a *ServiceDeskIntegrationApiService) UpdateServiceDeskIntegrationExecute(r ApiUpdateServiceDeskIntegrationRequest) (*ServiceDeskIntegrationDto, *http.Response, error) {
+//  @return QueuedCheckConfigDetails
+func (a *ServiceDeskIntegrationApiService) UpdateStatusCheckDetailsExecute(r ApiUpdateStatusCheckDetailsRequest) (*QueuedCheckConfigDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServiceDeskIntegrationDto
+		localVarReturnValue  *QueuedCheckConfigDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceDeskIntegrationApiService.UpdateServiceDeskIntegration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceDeskIntegrationApiService.UpdateStatusCheckDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/service-desk-integrations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/service-desk-integrations/status-check-configuration"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serviceDeskIntegrationDto == nil {
-		return localVarReturnValue, nil, reportError("serviceDeskIntegrationDto is required and must be specified")
+	if r.queuedCheckConfigDetails == nil {
+		return localVarReturnValue, nil, reportError("queuedCheckConfigDetails is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1667,7 +1667,7 @@ func (a *ServiceDeskIntegrationApiService) UpdateServiceDeskIntegrationExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.serviceDeskIntegrationDto
+	localVarPostBody = r.queuedCheckConfigDetails
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

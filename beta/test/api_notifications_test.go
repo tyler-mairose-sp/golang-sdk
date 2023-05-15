@@ -22,6 +22,18 @@ func Test_beta_NotificationsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test NotificationsApiService CreateDomainDkim", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NotificationsApi.CreateDomainDkim(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NotificationsApiService CreateNotificationTemplate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -75,6 +87,18 @@ func Test_beta_NotificationsApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.NotificationsApi.GetDkimAttributes(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NotificationsApiService GetMailFromAttributes", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NotificationsApi.GetMailFromAttributes(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -158,6 +182,18 @@ func Test_beta_NotificationsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test NotificationsApiService PutMailFromAttributes", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NotificationsApi.PutMailFromAttributes(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NotificationsApiService PutNotificationPreference", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -179,18 +215,6 @@ func Test_beta_NotificationsApiService(t *testing.T) {
 		httpRes, err := apiClient.NotificationsApi.SendTestNotification(context.Background()).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NotificationsApiService VerifyDomainDkim", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.NotificationsApi.VerifyDomainDkim(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

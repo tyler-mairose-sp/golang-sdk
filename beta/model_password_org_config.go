@@ -38,6 +38,14 @@ type _PasswordOrgConfig PasswordOrgConfig
 // will change when the set of required properties is changed
 func NewPasswordOrgConfig() *PasswordOrgConfig {
 	this := PasswordOrgConfig{}
+	var customInstructionsEnabled bool = false
+	this.CustomInstructionsEnabled = &customInstructionsEnabled
+	var digitTokenEnabled bool = false
+	this.DigitTokenEnabled = &digitTokenEnabled
+	var digitTokenDurationMinutes int32 = 5
+	this.DigitTokenDurationMinutes = &digitTokenDurationMinutes
+	var digitTokenLength int32 = 6
+	this.DigitTokenLength = &digitTokenLength
 	return &this
 }
 
@@ -46,6 +54,14 @@ func NewPasswordOrgConfig() *PasswordOrgConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewPasswordOrgConfigWithDefaults() *PasswordOrgConfig {
 	this := PasswordOrgConfig{}
+	var customInstructionsEnabled bool = false
+	this.CustomInstructionsEnabled = &customInstructionsEnabled
+	var digitTokenEnabled bool = false
+	this.DigitTokenEnabled = &digitTokenEnabled
+	var digitTokenDurationMinutes int32 = 5
+	this.DigitTokenDurationMinutes = &digitTokenDurationMinutes
+	var digitTokenLength int32 = 6
+	this.DigitTokenLength = &digitTokenLength
 	return &this
 }
 

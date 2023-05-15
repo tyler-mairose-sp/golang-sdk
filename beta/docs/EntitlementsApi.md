@@ -4,12 +4,12 @@ All URIs are relative to *https://sailpoint.api.identitynow.com/beta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetEntitlement**](EntitlementsApi.md#GetEntitlement) | **Get** /entitlements/{id} | Get an Entitlement
+[**GetEntitlement**](EntitlementsApi.md#GetEntitlement) | **Get** /entitlements/{id} | Get an entitlement
 [**GetEntitlementRequestConfig**](EntitlementsApi.md#GetEntitlementRequestConfig) | **Get** /entitlements/{id}/entitlement-request-config | Get Entitlement Request Config
 [**ListEntitlementChildren**](EntitlementsApi.md#ListEntitlementChildren) | **Get** /entitlements/{id}/children | List of entitlements children
 [**ListEntitlementParents**](EntitlementsApi.md#ListEntitlementParents) | **Get** /entitlements/{id}/parents | List of entitlements parents
 [**ListEntitlements**](EntitlementsApi.md#ListEntitlements) | **Get** /entitlements | Gets a list of entitlements.
-[**PatchEntitlement**](EntitlementsApi.md#PatchEntitlement) | **Patch** /entitlements/{id} | Patch a specified Entitlement
+[**PatchEntitlement**](EntitlementsApi.md#PatchEntitlement) | **Patch** /entitlements/{id} | Patch an entitlement
 [**PutEntitlementRequestConfig**](EntitlementsApi.md#PutEntitlementRequestConfig) | **Put** /entitlements/{id}/entitlement-request-config | Replace Entitlement Request Config
 [**UpdateEntitlementsInBulk**](EntitlementsApi.md#UpdateEntitlementsInBulk) | **Post** /entitlements/bulk-update | Bulk update an entitlement list
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > Entitlement GetEntitlement(ctx, id).Execute()
 
-Get an Entitlement
+Get an entitlement
 
 
 
@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-    id := "2c91808874ff91550175097daaec161c" // string | Entitlement Id
+    id := "2c91808874ff91550175097daaec161c" // string | The entitlement ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Entitlement Id | 
+**id** | **string** | The entitlement ID | 
 
 ### Other Parameters
 
@@ -336,7 +336,7 @@ func main() {
     limit := int32(250) // int32 | Max number of results to return. See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. (optional) (default to 250)
     count := true // bool | If *true* it will populate the *X-Total-Count* response header with the number of results that would be returned if *limit* and *offset* were ignored.  Since requesting a total count can have a performance impact, it is recommended not to send **count=true** if that value will not be used.  See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. (optional) (default to false)
     sorters := "name,-modified" // string | Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#sorting-results) Sorting is supported for the following fields: **id, name, created, modified, type, attribute, value, source.id** (optional)
-    filters := "attribute eq "memberOf"" // string | Filter results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#filtering-results) Filtering is supported for the following fields and operators:  **id**: *eq, in*  **name**: *eq, in, sw*  **type**: *eq, in*  **attribute**: *eq, in*  **value**: *eq, in, sw*  **source.id**: *eq, in*  **requestable**: *eq* (optional)
+    filters := "attribute eq "memberOf"" // string | Filter results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#filtering-results) Filtering is supported for the following fields and operators:  **id**: *eq, in*  **name**: *eq, in, sw*  **type**: *eq, in*  **attribute**: *eq, in*  **value**: *eq, in, sw*  **source.id**: *eq, in*  **requestable**: *eq* **created**: *gt, lt, ge, le* **modified**: *gt, lt, ge, le* (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | Max number of results to return. See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. | [default to 250]
  **count** | **bool** | If *true* it will populate the *X-Total-Count* response header with the number of results that would be returned if *limit* and *offset* were ignored.  Since requesting a total count can have a performance impact, it is recommended not to send **count&#x3D;true** if that value will not be used.  See [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters) for more information. | [default to false]
  **sorters** | **string** | Sort results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#sorting-results) Sorting is supported for the following fields: **id, name, created, modified, type, attribute, value, source.id** | 
- **filters** | **string** | Filter results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#filtering-results) Filtering is supported for the following fields and operators:  **id**: *eq, in*  **name**: *eq, in, sw*  **type**: *eq, in*  **attribute**: *eq, in*  **value**: *eq, in, sw*  **source.id**: *eq, in*  **requestable**: *eq* | 
+ **filters** | **string** | Filter results using the standard syntax described in [V3 API Standard Collection Parameters](https://developer.sailpoint.com/idn/api/standard-collection-parameters#filtering-results) Filtering is supported for the following fields and operators:  **id**: *eq, in*  **name**: *eq, in, sw*  **type**: *eq, in*  **attribute**: *eq, in*  **value**: *eq, in, sw*  **source.id**: *eq, in*  **requestable**: *eq* **created**: *gt, lt, ge, le* **modified**: *gt, lt, ge, le* | 
 
 ### Return type
 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 
 > Entitlement PatchEntitlement(ctx, id).JsonPatchOperation(jsonPatchOperation).Execute()
 
-Patch a specified Entitlement
+Patch an entitlement
 
 
 
@@ -410,7 +410,7 @@ import (
 )
 
 func main() {
-    id := "2c91808a7813090a017814121e121518" // string | ID of the Entitlement to patch
+    id := "2c91808a7813090a017814121e121518" // string | ID of the entitlement to patch
     jsonPatchOperation := []openapiclient.JsonPatchOperation{*openapiclient.NewJsonPatchOperation("replace", "/description")} // []JsonPatchOperation |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | ID of the Entitlement to patch | 
+**id** | **string** | ID of the entitlement to patch | 
 
 ### Other Parameters
 

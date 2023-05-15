@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 )
 
 
@@ -43,8 +44,6 @@ func (r ApiExportSpConfigRequest) Execute() (*SpConfigJob, *http.Response, error
 ExportSpConfig Initiates Configuration Objects Export Job.
 
 This post will export objects from the tenant to a JSON configuration file.
-Request will need one of the following security scopes:
-- sp:config:read - sp:config:manage
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiExportSpConfigRequest
@@ -544,14 +543,14 @@ func (a *SPConfigApiService) ExportSpConfigJobStatusExecute(r ApiExportSpConfigJ
 type ApiImportSpConfigRequest struct {
 	ctx context.Context
 	ApiService *SPConfigApiService
-	data *string
+	data *os.File
 	preview *bool
 	options *ImportOptions
 }
 
-// Name of JSON file containing the objects to be imported.
-func (r ApiImportSpConfigRequest) Data(data string) ApiImportSpConfigRequest {
-	r.data = &data
+// JSON file containing the objects to be imported.
+func (r ApiImportSpConfigRequest) Data(data *os.File) ApiImportSpConfigRequest {
+	r.data = data
 	return r
 }
 
@@ -631,7 +630,23 @@ func (a *SPConfigApiService) ImportSpConfigExecute(r ApiImportSpConfigRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToQuery(localVarFormParams, "data", r.data, "")
+	var dataLocalVarFormFileName string
+	var dataLocalVarFileName     string
+	var dataLocalVarFileBytes    []byte
+
+	dataLocalVarFormFileName = "data"
+
+
+	dataLocalVarFile := r.data
+
+	if dataLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(dataLocalVarFile)
+
+		dataLocalVarFileBytes = fbs
+		dataLocalVarFileName = dataLocalVarFile.Name()
+		dataLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: dataLocalVarFileBytes, fileName: dataLocalVarFileName, formFileName: dataLocalVarFormFileName})
+	}
 	if r.options != nil {
 		paramJson, err := parameterToJson(*r.options)
 		if err != nil {
@@ -1094,8 +1109,6 @@ func (r ApiListSpConfigObjectsRequest) Execute() ([]SpConfigObject, *http.Respon
 ListSpConfigObjects Get Config Object details
 
 This gets the list of object configurations which are known to the tenant export/import service. Object configurations that contain "importUrl" and "exportUrl" are available for export/import.
-Request will need one of the following security scopes:
-- sp:config:read - sp:config:manage
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListSpConfigObjectsRequest

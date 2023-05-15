@@ -23,6 +23,7 @@ type PasswordSyncGroup struct {
 	Id *string `json:"id,omitempty"`
 	// Name of the sync group
 	Name *string `json:"name,omitempty"`
+	// ID of the password policy
 	PasswordPolicyId *string `json:"passwordPolicyId,omitempty"`
 	// List of password managed sources IDs
 	SourceIds []string `json:"sourceIds,omitempty"`

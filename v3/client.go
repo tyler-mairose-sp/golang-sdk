@@ -74,9 +74,13 @@ type APIClient struct {
 
 	OAuthClientsApi *OAuthClientsApiService
 
+	PasswordConfigurationApi *PasswordConfigurationApiService
+
 	PasswordDictionaryApi *PasswordDictionaryApiService
 
 	PasswordManagementApi *PasswordManagementApiService
+
+	PasswordSyncGroupsApi *PasswordSyncGroupsApiService
 
 	PersonalAccessTokensApi *PersonalAccessTokensApiService
 
@@ -88,15 +92,21 @@ type APIClient struct {
 
 	RolesApi *RolesApiService
 
+	SODPolicyApi *SODPolicyApiService
+
 	SavedSearchApi *SavedSearchApiService
 
 	ScheduledSearchApi *ScheduledSearchApiService
 
 	SearchApi *SearchApiService
 
+	SegmentsApi *SegmentsApiService
+
 	ServiceDeskIntegrationApi *ServiceDeskIntegrationApiService
 
 	SourcesApi *SourcesApiService
+
+	TaggedObjectsApi *TaggedObjectsApiService
 
 	TransformsApi *TransformsApiService
 
@@ -130,18 +140,23 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LifecycleStatesApi = (*LifecycleStatesApiService)(&c.common)
 	c.NonEmployeeLifecycleManagementApi = (*NonEmployeeLifecycleManagementApiService)(&c.common)
 	c.OAuthClientsApi = (*OAuthClientsApiService)(&c.common)
+	c.PasswordConfigurationApi = (*PasswordConfigurationApiService)(&c.common)
 	c.PasswordDictionaryApi = (*PasswordDictionaryApiService)(&c.common)
 	c.PasswordManagementApi = (*PasswordManagementApiService)(&c.common)
+	c.PasswordSyncGroupsApi = (*PasswordSyncGroupsApiService)(&c.common)
 	c.PersonalAccessTokensApi = (*PersonalAccessTokensApiService)(&c.common)
 	c.PublicIdentitiesApi = (*PublicIdentitiesApiService)(&c.common)
 	c.PublicIdentitiesConfigApi = (*PublicIdentitiesConfigApiService)(&c.common)
 	c.RequestableObjectsApi = (*RequestableObjectsApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
+	c.SODPolicyApi = (*SODPolicyApiService)(&c.common)
 	c.SavedSearchApi = (*SavedSearchApiService)(&c.common)
 	c.ScheduledSearchApi = (*ScheduledSearchApiService)(&c.common)
 	c.SearchApi = (*SearchApiService)(&c.common)
+	c.SegmentsApi = (*SegmentsApiService)(&c.common)
 	c.ServiceDeskIntegrationApi = (*ServiceDeskIntegrationApiService)(&c.common)
 	c.SourcesApi = (*SourcesApiService)(&c.common)
+	c.TaggedObjectsApi = (*TaggedObjectsApiService)(&c.common)
 	c.TransformsApi = (*TransformsApiService)(&c.common)
 	c.WorkItemsApi = (*WorkItemsApiService)(&c.common)
 
@@ -485,7 +500,7 @@ func (c *APIClient) prepareRequest(
 
 	// Add the user agent to the request.
 	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
-	localVarRequest.Header.Add("X-SailPoint-SDK", "1.0.3")
+	localVarRequest.Header.Add("X-SailPoint-SDK", "1.0.4")
 
 	if ctx != nil {
 		// add context to the request
